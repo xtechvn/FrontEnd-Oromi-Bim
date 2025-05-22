@@ -1,1 +1,0 @@
-# FrontEnd-Oromi-Bim
