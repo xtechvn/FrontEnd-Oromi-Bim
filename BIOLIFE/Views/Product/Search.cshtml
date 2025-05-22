@@ -31,7 +31,7 @@
                             foreach (var item in Model)
                             {
                                 string link = @Html.GetStaticUrlProduct(item.name, item._id);
-                                <div class="item-product">
+                                <div class="item-product" style="width: 224px; margin-right: 15px;">
                                     <a href="@link">
                                         <div class="thumb thumb-product">
                                             <img src="@Html.GetStaticUrlImage( item.avatar,Configuration)" alt="@item.name" />

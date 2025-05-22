@@ -102,6 +102,13 @@ namespace BIOLIFE
                     pattern: "/san-pham/{title}--{product_code}",
                     defaults: new { controller = "Product", action = "Detail" });
             });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "ve-omori",
+                    pattern: "/ve-omori",
+                    defaults: new { controller = "Home", action = "VeOmori" });
+            });
         }
     }
 }

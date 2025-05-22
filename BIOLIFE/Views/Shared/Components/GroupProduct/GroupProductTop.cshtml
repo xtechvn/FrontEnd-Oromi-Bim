@@ -2,23 +2,24 @@
 @using BIOLIFE.Utilities;
 @model List<CategoryModel>
 @inject IConfiguration Configuration
-
+@{ 
+    var i = 0;
+}
 @if (Model != null)
 {
-    <div class="container">
-        <div class="swiper banner-cat">
-            <div class="swiper-wrapper">
+<ul>
+    @foreach (var item in Model)
+    {
+        if (i == 0)
+        {
+            <li class="list-product-name active" data-GroupProductId="@item.id"><a href="javascripts:;" class="">@item.name</a></li>
 
-                @foreach (var item in Model)
-                {
-                    <div class="swiper-slide">
-                        <a href="@(Html.GetStaticUrlGroupProduct(item.name,item.id))"><img src="@Html.GetStaticImageUrl(item.imagepath, Configuration)" alt="@item.name" /></a>
-                        <h4 class="title">@item.name</h4>
+        }
+        else
+        {
+            <li class="list-product-name " data-GroupProductId="@item.id"><a href="javascripts:;" class="">@item.name</a></li>
+        }
 
-                    </div>
-                }
-
-            </div>
-        </div>
-    </div>
+    }
+</ul>
 }

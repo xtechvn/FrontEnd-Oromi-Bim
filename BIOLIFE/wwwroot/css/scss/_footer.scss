@@ -1,120 +1,93 @@
 .footer {
-    background: #252B37;
-    color: #FFF;
-
-    a {
-        color: #fff;
+    border-top: 1px solid #B37B54;
+    padding: 40px 0;
+    position: relative;
+    color: #033256;
+    background: url(images/bg-footer.png) left bottom no-repeat;
+    @media (max-width:767px) {
+        padding: 20px 0;
+        
     }
-
-    .topfooter {
-        padding: 40px 0;
-        position: relative;
-        @media (max-width:767px) {
-            padding: 20px 0;
-          
+    .logo{
+        width: 200px;
+        margin-bottom: 10px;
+         @media (max-width:767px){
+           width: 100px;
         }
-      .title{
-        font-size: 18px;
+    }
+    .title{
+        font-size: 16px;
         font-weight: 700;
         text-transform: uppercase;
         margin-bottom: 16px;
-      }
-      .hotline{
-            color: #539C5F;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-      }
-      .time{
-        font-size: 14px;
-        font-weight: bold;
-        margin-bottom: 30px;
-      }
-      .links{
-        font-size: 16px;
-        font-weight: 700;
-        margin-bottom: 30px;
-        li{
-            margin-bottom: 16px;
-        }
-      }
-      .payment{
-        display: flex;
-            gap: 10px;
-            img{
-                width: 60px;
-                height: 32px;
-                object-fit: contain;
-            }
-      }
     }
-
-    .midfooter {
-        padding: 40px 0;
-        position: relative;
-        @media (max-width:767px) {
-            padding: 20px 0;
-            border-top: 1px solid #e2e2e2;
+    .grid-address{
+        margin-top: 10px;
+    }
+    .wrap-ft{
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        @media (max-width:767px){
+            flex-wrap: wrap;
         }
-
-        &::before{
-            content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="2" viewBox="0 0 1200 2" fill="none"><path d="M0 1H1200" stroke="url(%23paint0_linear_276_341)" stroke-width="0.5"/><defs><linearGradient id="paint0_linear_276_341" x1="0" y1="1.5" x2="1200" y2="1.5" gradientUnits="userSpaceOnUse"><stop stop-color="%23E4F6E6" stop-opacity="0"/><stop offset="0.51" stop-color="%23E4F6E6"/><stop offset="1" stop-color="%23E4F6E6" stop-opacity="0"/></linearGradient></defs></svg>');
-            position: absolute;
-            top: -10px;
-            @media (max-width:767px) {
-                display: none;
-            }
-        }
-        .logo{
-            img{
-                width: 200px;
-                @media (max-width:767px) {
-                    width: 150px;
-                }
-            }
-        }
-        .slogan{
-            text-transform: uppercase;
-            font-size: 18px;
-            color: #D3D5D7;
-            margin-top: 8px;
-        }
-        .info{
-            color: #D3D5D7;
-            margin-top: 25px;
-            li{
-                display: flex;
+        .left-ft{
+            width: 100%;
+             ul{
+                display: grid;
                 gap: 10px;
-                margin-bottom: 8px;
-                a{
-                    text-decoration: none;
+                li{
                     display: flex;
                     gap: 10px;
+                    align-items: center;
+                }
+             
+             }
+        }
+        .right-ft{
+            width: 380px;
+            max-width: 100%;
+            flex-shrink: 0;
+        }
+        + .wrap-ft{
+            margin-top: 40px;
+        }
+        .flex-link{
+            display: flex;
+            gap: 20px;
+            
+            justify-content: space-between;
+            @media (max-width:767px){
+                flex-wrap: wrap;
+            }
+            .item:first-child{
+                flex-shrink: 0;
+            }
+            .item:last-child{
+                display: flex;
+                flex-wrap: wrap;
+                .title{
+                    width: 100%;
+                }
+                ul{
+                    width: 50%;
+                      @media (max-width:767px){
+                        width: 100%;
+                        + ul{
+                            margin-top: 10px;
+                        }
+                    }
                 }
             }
         }
         .social{
-            display: flex;
-            gap: 10px;
-            
-            img{
-                width: 45px;
-                height: 45px;
-                object-fit: contain;
-            }
-        }
-    }
-
-    .bottomfooter {
-        background: #1E222C;
-        font-size: 14px;
-        padding: 8px 0;
-        img{
-            margin-left: auto;
-            margin-right: 0;
-            @media (max-width:767px) {
-                margin-left: 0;
-                margin-top: 10px;
+            ul{
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                + .title{
+                    margin-top: 20px;
+                }
             }
         }
     }
@@ -128,22 +101,14 @@
     z-index: 1;
     height: 50px;
     width: 50px;
-    font-size: 20px;
+    padding: 0;
     border: none;
     color: #cccccc;
     border-radius: 100%;
     transition: 0.5s;
     cursor: pointer;
-    transform: rotate(-90deg);
-    background: var(--color-base);
-
-    &::after {
-        background: url('data:image/svg+xml,<svg width="7" height="14" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.77292 7.39792L1.14792 13.0229C1.09565 13.0752 1.03361 13.1166 0.965326 13.1449C0.897042 13.1732 0.823856 13.1878 0.749947 13.1878C0.676037 13.1878 0.602851 13.1732 0.534567 13.1449C0.466284 13.1166 0.40424 13.0752 0.351978 13.0229C0.299716 12.9707 0.258259 12.9086 0.229975 12.8403C0.201691 12.772 0.187134 12.6989 0.187134 12.6249C0.187134 12.551 0.201691 12.4779 0.229975 12.4096C0.258259 12.3413 0.299716 12.2792 0.351978 12.227L5.57971 6.99995L0.351978 1.77292C0.24643 1.66737 0.187134 1.52421 0.187134 1.37495C0.187134 1.22568 0.24643 1.08253 0.351978 0.976978C0.457525 0.87143 0.600679 0.812134 0.749947 0.812134C0.899214 0.812134 1.04237 0.87143 1.14792 0.976978L6.77292 6.60198C6.82521 6.65422 6.8667 6.71626 6.89501 6.78454C6.92332 6.85283 6.93789 6.92603 6.93789 6.99995C6.93789 7.07387 6.92332 7.14706 6.89501 7.21535C6.8667 7.28364 6.82521 7.34567 6.77292 7.39792Z" fill="%23fcfcfc"/></svg>') no-repeat center;
-        content: '';
-        width: 100%;
-        height: 100%;
-        display: block;
-    }
+    transform: rotate(-180deg);
+    background: var(--color-base) url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15.0228 7.14797L9.39779 12.773C9.34555 12.8253 9.28351 12.8668 9.21523 12.8951C9.14694 12.9234 9.07375 12.9379 8.99982 12.9379C8.9259 12.9379 8.85271 12.9234 8.78442 12.8951C8.71613 12.8668 8.6541 12.8253 8.60186 12.773L2.97686 7.14797C2.87131 7.04242 2.81201 6.89927 2.81201 6.75C2.81201 6.60074 2.87131 6.45758 2.97686 6.35203C3.0824 6.24649 3.22556 6.18719 3.37482 6.18719C3.52409 6.18719 3.66725 6.24649 3.77279 6.35203L8.99982 11.5798L14.2269 6.35203C14.2791 6.29977 14.3412 6.25832 14.4094 6.23003C14.4777 6.20175 14.5509 6.18719 14.6248 6.18719C14.6987 6.18719 14.7719 6.20175 14.8402 6.23003C14.9085 6.25832 14.9705 6.29977 15.0228 6.35203C15.0751 6.4043 15.1165 6.46634 15.1448 6.53462C15.1731 6.60291 15.1876 6.67609 15.1876 6.75C15.1876 6.82391 15.1731 6.8971 15.1448 6.96538C15.1165 7.03367 15.0751 7.09571 15.0228 7.14797Z" fill="%23ffffff"/></svg>') no-repeat center;
 }
 
 

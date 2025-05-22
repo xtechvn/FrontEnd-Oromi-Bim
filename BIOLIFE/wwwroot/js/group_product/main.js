@@ -1,15 +1,21 @@
 
 var total_product = 12; // Tổng số sản phẩm của 1 box
 var group_id_product_top = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
+var group_id_product_top_1 = 1060;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
+var group_id_product_top_2 = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
+var group_id_product_top_3 = 1059;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
 
 $(document).ready(function () {
 
     group_product.bind_list_group_product();
     group_product.bind_list_product_top();
+    group_product.bind_list_product_top_1();
+    group_product.bind_list_product_top_2();
+    group_product.bind_list_product_top_3();
     group_product.bind_list_menu_product(); // danh mục sản phẩm trang chủ bên trái /Home
     group_product.bind_list_product_bottom_top();
 
-
+    
     // Page load render data by group product id
     var view_name = "~/Views/Shared/Components/Product/ProductListViewComponent.cshtml";
     var skip = 0;
@@ -20,6 +26,17 @@ $(document).ready(function () {
 
     group_product.bind_list_product_flashSale();
 })
+
+$(document.body).on('click', '.open-popup', function (e) {
+    $('#popup-dathang').attr('style','display: block;')
+});
+$(document.body).on('click', '.list-product-name', function (e) {
+    var element = $(this)
+    $('.list-product-name').removeClass('active')
+    element.addClass('active')
+    var GroupProduct_Id = $('#group-product-top .active').attr('data-GroupProductId')
+    group_product.bind_list_product_top_element(GroupProduct_Id, $('.list-product'))
+});
 $(document.body).on('click', '.menu_group_product', function (e) {
 
     var group_product_id = $(this).data('groupproduct');
@@ -98,6 +115,123 @@ var group_product = {
                 const swiperFlash = new Swiper('.section-flashsale .product-slide', {
                     loop: false,
                     pagination: false,                    
+                    spaceBetween: 15,
+                    slidesPerView: 1.5,
+                    breakpoints: {
+                        540: {
+                            slidesPerView: 2.5,
+                        },
+                        768: {
+                            slidesPerView: 3.5,
+                        },
+                        1024: {
+                            slidesPerView: 4.5,
+                        },
+                        1400: {
+                            slidesPerView: 5,
+                        }
+                    },
+                    navigation: {
+                        nextEl: '.section-flashsale .swiper-button-next',
+                        prevEl: '.section-flashsale  .swiper-button-prev'
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+    },
+    bind_list_product_top_1: function () { // bind box nhóm sản phẩm nổi bật trang home
+
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/home/loadProductTopComponent',
+            data: { group_product_id: group_id_product_top_1, _page_index: 0, page_size: total_product, view_name: "~/Views/Shared/Components/Product/BoxProductTopList.cshtml" },
+            success: function (data) {
+                $('#product-top-list-1').html(data);
+                const swiperFlash = new Swiper('.section-flashsale .product-slide', {
+                    loop: false,
+                    pagination: false,
+                    spaceBetween: 15,
+                    slidesPerView: 1.5,
+                    breakpoints: {
+                        540: {
+                            slidesPerView: 2.5,
+                        },
+                        768: {
+                            slidesPerView: 3.5,
+                        },
+                        1024: {
+                            slidesPerView: 4.5,
+                        },
+                        1400: {
+                            slidesPerView: 5,
+                        }
+                    },
+                    navigation: {
+                        nextEl: '.section-flashsale .swiper-button-next',
+                        prevEl: '.section-flashsale  .swiper-button-prev'
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+    },
+    bind_list_product_top_2: function () { // bind box nhóm sản phẩm nổi bật trang home
+
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/home/loadProductTopComponent',
+            data: { group_product_id: group_id_product_top_2, _page_index: 0, page_size: total_product, view_name: "~/Views/Shared/Components/Product/BoxProductTopList.cshtml" },
+            success: function (data) {
+                $('#product-top-list-2').html(data);
+                const swiperFlash = new Swiper('.section-flashsale .product-slide', {
+                    loop: false,
+                    pagination: false,
+                    spaceBetween: 15,
+                    slidesPerView: 1.5,
+                    breakpoints: {
+                        540: {
+                            slidesPerView: 2.5,
+                        },
+                        768: {
+                            slidesPerView: 3.5,
+                        },
+                        1024: {
+                            slidesPerView: 4.5,
+                        },
+                        1400: {
+                            slidesPerView: 5,
+                        }
+                    },
+                    navigation: {
+                        nextEl: '.section-flashsale .swiper-button-next',
+                        prevEl: '.section-flashsale  .swiper-button-prev'
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+    },
+    bind_list_product_top_3: function () { // bind box nhóm sản phẩm nổi bật trang home
+
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/home/loadProductTopComponent',
+            data: { group_product_id: group_id_product_top_3, _page_index: 0, page_size: total_product, view_name: "~/Views/Shared/Components/Product/BoxProductTopList.cshtml" },
+            success: function (data) {
+                $('#product-top-list-3').html(data);
+                const swiperFlash = new Swiper('.section-flashsale .product-slide', {
+                    loop: false,
+                    pagination: false,
                     spaceBetween: 15,
                     slidesPerView: 1.5,
                     breakpoints: {
@@ -215,9 +349,12 @@ var group_product = {
             dataType: 'html',
             type: 'POST',
             url: '/home/loadGroupProductComponent',
-            //data: { group_product_id: 15, _page_index: 0, page_size: 12 },
+            data: { group_product_id: 32, _page_index: 0, page_size: 4 },
             success: function (data) {
                 $('#group-product-top').html(data);
+                var GroupProduct_Id = $('#group-product-top .active').attr('data-GroupProductId')
+                group_product.bind_list_product_top_element(GroupProduct_Id, $('.list-product'))
+                
                 const swiperADS = new Swiper('.banner-cat', {
                     loop: false,
                     pagination: false,
@@ -306,5 +443,44 @@ var group_product = {
                 console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
             }
         });
-    }
+    },
+    bind_list_product_top_element: function (id,element) { // bind box nhóm sản phẩm nổi bật trang home
+
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/home/loadProductTopComponent',
+            data: { group_product_id: id, _page_index: 0, page_size: 4, view_name: "~/Views/Shared/Components/Product/BoxProductTopList.cshtml" },
+            success: function (data) {
+                element.html(data);
+                const swiperFlash = new Swiper('.section-flashsale .product-slide', {
+                    loop: false,
+                    pagination: false,
+                    spaceBetween: 15,
+                    slidesPerView: 1.5,
+                    breakpoints: {
+                        540: {
+                            slidesPerView: 2.5,
+                        },
+                        768: {
+                            slidesPerView: 3.5,
+                        },
+                        1024: {
+                            slidesPerView: 4.5,
+                        },
+                        1400: {
+                            slidesPerView: 5,
+                        }
+                    },
+                    navigation: {
+                        nextEl: '.section-flashsale .swiper-button-next',
+                        prevEl: '.section-flashsale  .swiper-button-prev'
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+    },
 }

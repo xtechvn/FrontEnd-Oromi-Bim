@@ -39,6 +39,18 @@ namespace BIOLIFE.Controllers.Home
         {
             return View();
         }
+        [Route("dai-ly")]
+        [HttpGet]
+        public async Task<IActionResult> Agency()
+        {
+            return View();
+        }
+        [Route("ve-omoro")]
+        [HttpGet]
+        public async Task<IActionResult> VeOmori()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult loadHeaderComponent()
