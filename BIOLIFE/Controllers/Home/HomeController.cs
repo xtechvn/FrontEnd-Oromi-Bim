@@ -45,7 +45,7 @@ namespace BIOLIFE.Controllers.Home
         {
             return View();
         }
-        [Route("ve-omoro")]
+        [Route("ve-omori")]
         [HttpGet]
         public async Task<IActionResult> VeOmori()
         {

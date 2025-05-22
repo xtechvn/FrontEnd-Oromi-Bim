@@ -28,7 +28,28 @@ $(document).ready(function () {
 })
 
 $(document.body).on('click', '.open-popup', function (e) {
-    $('#popup-dathang').attr('style','display: block;')
+    $('#popup-dathang').attr('style', 'display: block;')
+    var element = $(this)
+
+    var modelsp = {
+        id = element.attr('data-id')
+    }
+    $.ajax({
+        dataType: 'html',
+        type: 'POST',
+        url: '/Product/GetProductDetail',
+        data: { modelsp },
+        success: function (data) {
+            if (data.is_success == true) { 
+                $('.product_sp').html('<h4 class="title-sp">'++'</h4>' +
+                    '<div class= "price-sp" > '++' đ</div >' +
+                    ' <img src="'++'" alt="">')
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+        }
+    });
 });
 $(document.body).on('click', '.list-product-name', function (e) {
     var element = $(this)
