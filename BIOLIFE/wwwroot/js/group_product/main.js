@@ -6,7 +6,7 @@ var group_id_product_top_2 = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI 
 var group_id_product_top_3 = 1059;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
 
 $(document).ready(function () {
-
+    
     group_product.bind_list_group_product();
     group_product.bind_list_product_top();
     group_product.bind_list_product_top_1();
@@ -28,22 +28,31 @@ $(document).ready(function () {
 })
 
 $(document.body).on('click', '.open-popup', function (e) {
+    $('.select-styled').attr('style', 'display:none;')
     $('#popup-dathang').attr('style', 'display: block;')
     var element = $(this)
 
-    var modelsp = {
-        id = element.attr('data-id')
+    var request = {
+        id : element.attr('data-id')
     }
     $.ajax({
         dataType: 'html',
         type: 'POST',
         url: '/Product/GetProductDetail',
-        data: { modelsp },
+        data: { request },
         success: function (data) {
-            if (data.is_success == true) { 
-                $('.product_sp').html('<h4 class="title-sp">'++'</h4>' +
-                    '<div class= "price-sp" > '++' đ</div >' +
-                    ' <img src="'++'" alt="">')
+            data= JSON.parse(data)
+            if (data.is_success == true) {
+                if (data.data.product_main == null && data.data.product_sub != null) {
+                    $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
+                        '<div class= "price-sp" > ' + data.data.product_sub[0].amount + ' đ</div >' +
+                        ' <img src="' + data.data.product_sub[0].images + '" alt="">')
+                } else {
+                    $('.product_sp').html('<h4 class="title-sp">' + data.data.product_main.name + '</h4>' +
+                        '<div class= "price-sp" > ' + group_product.Comma(data.data.product_main.amount) + ' đ</div >' +
+                        ' <img src="' + data.data.product_main.images + '" alt="">')
+                }
+                
             }
         },
         error: function (xhr, status, error) {
@@ -503,5 +512,17 @@ var group_product = {
                 console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
             }
         });
+    },
+    Comma: function (number) { //function to add commas to textboxes
+        number = ('' + number).replace(/[^0-9.,]+/g, '');
+        number += '';
+        number = number.replaceAll(',', '');
+        x = number.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1))
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        return x1 + x2;
     },
 }

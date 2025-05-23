@@ -3,6 +3,7 @@
     padding: 40px 0;
     position: relative;
     color: #033256;
+    font-weight: 600;
     background: url(images/bg-footer.png) left bottom no-repeat;
     @media (max-width:767px) {
         padding: 20px 0;
@@ -23,6 +24,9 @@
     }
     .grid-address{
         margin-top: 10px;
+        svg{
+            flex-shrink: 0;
+        }
     }
     .wrap-ft{
         display: flex;
