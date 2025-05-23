@@ -44,13 +44,25 @@ $(document.body).on('click', '.open-popup', function (e) {
             data= JSON.parse(data)
             if (data.is_success == true) {
                 if (data.data.product_main == null && data.data.product_sub != null) {
+                    var img = '';
+                    if (data.data.product_sub[0].avatar.indexOf("https://static-image.adavigo.com/") == -1) {
+                        img = "https://static-image.adavigo.com/" + data.data.product_sub[0].avatar
+                    } else {
+                        img = data.data.product_sub[0].avatar
+                    }
                     $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
-                        '<div class= "price-sp" > ' + data.data.product_sub[0].amount + ' đ</div >' +
-                        ' <img src="' + data.data.product_sub[0].images + '" alt="">')
+                        '<div class= "price-sp" > ' + group_product.Comma(data.data.product_sub[0].amount) + ' đ</div >' +
+                        ' <img src="' + img + '" alt="">')
                 } else {
+                    var img = '';
+                    if (data.data.product_main.avatar.indexOf("https://static-image.adavigo.com/") == -1) {
+                        img = "https://static-image.adavigo.com/" + data.data.product_main.avatar
+                    } else {
+                        img = data.data.product_main.avatar
+                    }
                     $('.product_sp').html('<h4 class="title-sp">' + data.data.product_main.name + '</h4>' +
                         '<div class= "price-sp" > ' + group_product.Comma(data.data.product_main.amount) + ' đ</div >' +
-                        ' <img src="' + data.data.product_main.images + '" alt="">')
+                        ' <img src="' + img + '" alt="">')
                 }
                 
             }
