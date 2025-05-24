@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Tin tức";    
+    ViewData["Title"] = "Tin tức";
 }
 @model ArticleDetailModel
 
@@ -20,12 +20,12 @@
                 </div>
                 <h1 class="title-news">@Html.Raw(Model.title)</h1>
                 <div class="details">
-                      @Html.Raw(Model.body)
+                    @Html.Raw(Model.body)
                 </div>
                 <div class="link-share">
                     <span>Chia sẻ:</span>
-                    <ul>                        
-                        <li><a href="/"><img src="~/images/facebook.png" alt="" /></a></li>                        
+                    <ul>
+                        <li><a href="/"><img src="~/images/facebook.png" alt="" /></a></li>
                     </ul>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="box-side box_product_sale">
-                    
+
                 </div>
 
 
@@ -96,161 +96,32 @@
         </div>
     </div>
 </section>
+@*Sản phẩm đã xem*@
+<!--<section class="section-category product_history">-->@*wwwroot\js\header\main.js*@<!--</section>-->
+@*<section class="section-news-bottom">
+        <div class="container">
+            <div class="title-box">
+                <h3 class="name-tt"><a href="">Tin liên quan</a></h3>
+                <a href="/tin-tuc" class="xemthem">Xem thêm</a>
+            </div>
+            <div class="list-news">
+                <div class="row list-news-lq">
 
-<section class="section-category product_history">@*wwwroot\js\header\main.js*@</section>
-
-<section class="section-news-bottom">
-    <div class="container">
-        <div class="title-box">
-            <h3 class="name-tt"><a href="">Tin liên quan</a></h3>
-            <a href="" class="xemthem">Xem thêm</a>
-        </div>
-        <div class="list-news">
-            <div class="row">
-                <div class="item-news col-md-4 col-lg-3 col-sm-6">
-                    <div class="box-news">
-                        <div class="thumb-art">
-                            <div class="thumb thumb-news">
-                                <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                            </div>
-                        </div>
-                        <div class="right-content">
-                            <div class="flex-cat">
-                                <span class="time">
-                                    <i class="icon icon-time"></i>
-                                    19/02/2020
-                                </span>
-                                <a href="" class="cat-tag">mẹo hay</a>
-                            </div>
-                            <h2 class="title-news">
-                                <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                            </h2>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="item-news  col-md-4 col-lg-3 col-sm-6">
-                    <div class="box-news">
-                        <div class="thumb-art">
-                            <div class="thumb thumb-news">
-                                <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                            </div>
-                        </div>
-                        <div class="right-content">
-                            <div class="flex-cat">
-                                <span class="time">
-                                    <i class="icon icon-time"></i>
-                                    19/02/2020
-                                </span>
-                                <a href="" class="cat-tag">mẹo hay</a>
-                            </div>
-                            <h2 class="title-news">
-                                <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                            </h2>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="item-news col-md-4 col-lg-3 col-sm-6">
-                    <div class="box-news">
-                        <div class="thumb-art">
-                            <div class="thumb thumb-news">
-                                <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                            </div>
-                        </div>
-                        <div class="right-content">
-                            <div class="flex-cat">
-                                <span class="time">
-                                    <i class="icon icon-time"></i>
-                                    19/02/2020
-                                </span>
-                                <a href="" class="cat-tag">mẹo hay</a>
-                            </div>
-                            <h2 class="title-news">
-                                <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                            </h2>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="item-news col-md-4 col-lg-3 col-sm-6">
-                    <div class="box-news">
-                        <div class="thumb-art">
-                            <div class="thumb thumb-news">
-                                <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                            </div>
-                        </div>
-                        <div class="right-content">
-                            <div class="flex-cat">
-                                <span class="time">
-                                    <i class="icon icon-time"></i>
-                                    19/02/2020
-                                </span>
-                                <a href="" class="cat-tag">mẹo hay</a>
-                            </div>
-                            <h2 class="title-news">
-                                <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                            </h2>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="item-news col-md-4 col-lg-3 col-sm-6">
-                    <div class="box-news">
-                        <div class="thumb-art">
-                            <div class="thumb thumb-news">
-                                <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                            </div>
-                        </div>
-                        <div class="right-content">
-                            <div class="flex-cat">
-                                <span class="time">
-                                    <i class="icon icon-time"></i>
-                                    19/02/2020
-                                </span>
-                                <a href="" class="cat-tag">mẹo hay</a>
-                            </div>
-                            <h2 class="title-news">
-                                <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                            </h2>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="item-news col-md-4 col-lg-3 col-sm-6">
-                    <div class="box-news">
-                        <div class="thumb-art">
-                            <div class="thumb thumb-news">
-                                <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                            </div>
-                        </div>
-                        <div class="right-content">
-                            <div class="flex-cat">
-                                <span class="time">
-                                    <i class="icon icon-time"></i>
-                                    19/02/2020
-                                </span>
-                                <a href="" class="cat-tag">mẹo hay</a>
-                            </div>
-                            <h2 class="title-news">
-                                <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                            </h2>
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-
+    </section>*@
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/news/news_detail.js"></script>
+<script>
+    news_detail.bin_news(@ViewBag.id);
+</script>
 @*
 
 
 
 
-@section Scripts {
-    <script src="~/js/news/news_detail.js"></script>
-}
+    @section Scripts {
+        <script src="~/js/news/news_detail.js"></script>
+    }
 *@

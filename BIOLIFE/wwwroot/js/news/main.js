@@ -67,6 +67,11 @@ var news = {
       
 
     },
+    onpage: function (page) {
+        var id = $('.active .cat-tag').attr('data-id')
+        news.bin_news_home(id, page);
+
+    },
     //bin_news_top: function (category_id, position_name, page) {
 
     //    $.ajax({

@@ -26,7 +26,7 @@ var header = {
                                 <h3 class="name-tt"><a href="">Sản phẩm đã xem </a></h3>                
                             </div>
                             <div class="product-category">
-                                <div class="list-product scroll-product">
+                                <div class="list-product scroll-product row">
                                         {productListContainer}
                                 </div>
                             </div>

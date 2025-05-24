@@ -51,6 +51,11 @@ namespace BIOLIFE.Controllers.News
         {
             var article_sv = new NewsService(configuration, redisService);
             var article = await article_sv.getArticleDetailById(article_id);
+            if(article.list_category_id != null)
+            {
+                var list = article.list_category_id.Split(',');
+                ViewBag.id = list[0];
+            }
             return View("~/Views/News/ArticleDetail.cshtml", article);
         }
 

@@ -25,13 +25,13 @@
                     //    url_fixed = url_fixed.Replace(@"//",@"/");
                     //}
                     
-                    <div class="item-product" style="width: 224px; margin-right: 15px;max-height:300px;">
+                    <div class="item-product" style="width: 224px; margin-right: 15px;max-height:350px;">
                         <a href="@Html.GetStaticUrlProduct(item.name, item._id)">
                             <div class="thumb thumb-product">
                                 <img src="@Html.GetStaticUrlImage( item.avatar,Configuration)" alt="@item.name" />
                             </div>
                             <div class="box-info">
-                                <h3 class="name-product">@item.name </h3>
+                                <p class="name-product">@item.name </p>
                                 <div class="flex-price">
                                     <div class="price-sale">
                                         @if(item.attributes != null)
