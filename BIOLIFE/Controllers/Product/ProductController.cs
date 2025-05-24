@@ -1,4 +1,5 @@
 ﻿using BIOLIFE.Controllers.Product.Service;
+using BIOLIFE.Models;
 using BIOLIFE.Models.Products;
 using BIOLIFE.Service.Redis;
 using Microsoft.AspNetCore.Mvc;
@@ -145,6 +146,30 @@ namespace BIOLIFE.Controllers.Product
             {              
                 return Content("");
             }
+        }
+       
+        public async Task<IActionResult> SeverProductRegistration(ProductRegistrationModel request)
+        {
+            try
+            {
+                var data_result = await productsService.SeverProductRegistration(request);
+                if(data_result > 0)
+                return Ok(new
+                {
+                    is_success = true,
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new
+                {
+                    is_success = false,
+                });
+            }
+            return Ok(new
+            {
+                is_success = false,
+            });
         }
 
     }

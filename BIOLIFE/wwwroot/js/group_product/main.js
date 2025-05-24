@@ -26,7 +26,34 @@ $(document).ready(function () {
 
     group_product.bind_list_product_flashSale();
 })
+$(document.body).on('click', '.dk-sp', function (e) {
+    var request = {
+        Note: $('#note').val(),
+        ProductId: $('#ProductId').val(),
+        DistrictId: $('#DistrictId').val(),
+        ProvinceId: $('#ProvinceId').val(),
+        FullName: $('#ShopName').val(),
+        Phone: $('#phone').val(),
+        Name: $('#name').val(),  
+    }
+    $.ajax({
+        dataType: 'html',
+        type: 'POST',
+        url: '/Product/SeverProductRegistration',
+        data: { request },
+        success: function (data) {
+            data = JSON.parse(data)
+            if (data.is_success == true) {
+                
 
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+        }
+    });
+
+});
 $(document.body).on('click', '.open-popup', function (e) {
     $('.select-styled').attr('style', 'display:none;')
     $('#popup-dathang').attr('style', 'display: block;')
@@ -51,13 +78,13 @@ $(document.body).on('click', '.open-popup', function (e) {
                         img = data.data.product_sub[0].avatar
                     }
 
-                    $("#ProductId").html('<option value="1">' + data.data.product_sub[0].name + '</option>')
+                    $("#ProductId").html('<option value="' + data.data.product_sub[0]._id+'">' + data.data.product_sub[0].name + '</option>')
                     $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
                         '<div class= "price-sp" > ' + group_product.Comma(data.data.product_sub[0].amount) + ' đ</div >' +
                         ' <img src="' + img + '" alt="">')
                 } else {
                     var img = '';
-                    $("#ProductId").html('<option value="1">' + data.data.product_main.name + '</option>')
+                    $("#ProductId").html('<option value="' + data.data.product_main._id +'">' + data.data.product_main.name + '</option>')
                     if (data.data.product_main.avatar.indexOf("https://static-image.adavigo.com/") == -1) {
                         img = "https://static-image.adavigo.com/" + data.data.product_main.avatar
                     } else {

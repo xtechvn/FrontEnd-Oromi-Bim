@@ -151,5 +151,34 @@ namespace BIOLIFE.Controllers.Product.Service
                 return null;
             }
         }
+        public async Task<int> SeverProductRegistration(ProductRegistrationModel request)
+        {
+            try
+            {
+                string response_api = string.Empty;
+                var connect_api_us = new ConnectApi(configuration, redisService);
+          
+
+                response_api = await connect_api_us.CreateHttpRequest("/api/ProductRegistration/SeverProductRegistration.json", request);
+
+                // Nhan ket qua tra ve                            
+                var JsonParent = JArray.Parse("[" + response_api + "]");
+                int status = Convert.ToInt32(JsonParent[0]["status"]);
+
+                if (status == ((int)ResponseType.SUCCESS) && JsonParent[0]["data"] != null)
+                {
+                    var product_list = JsonConvert.DeserializeObject<List<ProductMongoDbModel>>(JsonParent[0]["data"].ToString());
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }
