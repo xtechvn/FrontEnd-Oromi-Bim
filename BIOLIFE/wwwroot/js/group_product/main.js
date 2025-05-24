@@ -51,13 +51,13 @@ $(document.body).on('click', '.open-popup', function (e) {
                         img = data.data.product_sub[0].avatar
                     }
 
-                    $("#product-sp").html('<option>' + data.data.product_sub[0].name + '</option>')
+                    $("#ProductId").html('<option value="1">' + data.data.product_sub[0].name + '</option>')
                     $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
                         '<div class= "price-sp" > ' + group_product.Comma(data.data.product_sub[0].amount) + ' đ</div >' +
                         ' <img src="' + img + '" alt="">')
                 } else {
                     var img = '';
-                    $("#product-sp").html('<option>' + data.data.product_main.name + '</option>')
+                    $("#ProductId").html('<option value="1">' + data.data.product_main.name + '</option>')
                     if (data.data.product_main.avatar.indexOf("https://static-image.adavigo.com/") == -1) {
                         img = "https://static-image.adavigo.com/" + data.data.product_main.avatar
                     } else {

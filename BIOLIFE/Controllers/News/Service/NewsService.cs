@@ -193,6 +193,34 @@ namespace BIOLIFE.Controllers.News.Service
                 return 0;
             }
         }
+        public async Task<List<ArticleRelationModel>> FindArticleByTitle(FindArticleModel requestObj)
+        {
+            try
+            {
+                string response_api = string.Empty;
+                var connect_api_us = new ConnectApi(configuration, redisService);
+                
 
+                var result = await connect_api_us.CreateHttpRequest("/api/news/find-article.json", requestObj);
+                var jsonData = JObject.Parse(result);
+                var status = int.Parse(jsonData["status"].ToString());
+
+                if (status == (int)ResponseType.SUCCESS)
+                {
+                    return JsonConvert.DeserializeObject<List<ArticleRelationModel>>(jsonData["data_list"].ToString());
+                }
+                else
+                {
+                    var msg = int.Parse(jsonData["msg"].ToString());
+                    Utilities.LogHelper.InsertLogTelegramByUrl(configuration["BotSetting:bot_token"], configuration["BotSetting:bot_group_id"], "GetNewsDetail-NewServices:" + msg.ToString());
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogHelper.InsertLogTelegramByUrl(configuration["BotSetting:bot_token"], configuration["BotSetting:bot_group_id"], "GetNewsDetail-NewServices:" + ex.ToString());
+            }
+            return null;
+        }
     }
 }

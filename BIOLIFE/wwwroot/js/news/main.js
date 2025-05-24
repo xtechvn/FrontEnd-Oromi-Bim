@@ -1,5 +1,18 @@
 $(document).ready(function () {
 
+    $(document.body).on('click', '.Category-tag .cat-tag', function (e) {
+        var element = $(this)
+        $('.Category-tag').removeClass('active')
+        element.closest('.Category-tag').addClass('active')
+        var id = element.attr('data-id')
+        news.bin_news_home(id, page);
+        
+    });
+    $("#text_input").on('keyup', function (e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            news.GetFindArticleByTitle();
+        }
+    });
     var category_id = parseInt($(".category_id").data("categoryid"));
 
     const query_string = window.location.search;
@@ -8,7 +21,7 @@ $(document).ready(function () {
     // Lấy giá trị của tham số 'page'
     const page = url_params.get('page') == null ? 1 : url_params.get('page');
     // Load tin trên trang chủ NEWS
-    news.bin_news_home(category_id, page );
+    news.bin_news_home(category_id, page);
 
     //if (category_id <= 0) {         
     //    // Bin theo tin mới nhất của các chuyên mục
@@ -22,7 +35,7 @@ $(document).ready(function () {
 
 var news = {
     bin_news_home: function (category_id, page) {
-        
+
         $.ajax({
             dataType: 'html',
             type: 'POST',
@@ -36,9 +49,26 @@ var news = {
             }
         });
 
-    },   
+    },
+    GetFindArticleByTitle: function () {
+        var requestObj = {
+            title: $('#text_input').val(),
+            parent_cate_faq_id: $('.active .cat-tag').attr('data-id')
+        };
+        $.ajax({
+            url: "/News/GetFindArticleByTitle",
+            type: 'post',
+            data: { requestObj: requestObj },
+            success: function (data) {
+                $('.list-news-home').html(data);
+            },
+
+        });
+      
+
+    },
     //bin_news_top: function (category_id, position_name, page) {
-        
+
     //    $.ajax({
     //        dataType: 'html',
     //        type: 'POST',
@@ -54,14 +84,14 @@ var news = {
 
     //},   
     //bin_news_left: function (category_id, position_name, page) {
-          
+
     //    $.ajax({
     //        dataType: 'html',
     //        type: 'POST',
     //        url: 'article/get-list.json',
     //        data: { category_id: category_id, position_name: position_name, page: page },
     //        success: function (data) {
-                
+
     //            $('.list-news-top-left').html(data);
     //        },
     //        error: function (xhr, status, error) {

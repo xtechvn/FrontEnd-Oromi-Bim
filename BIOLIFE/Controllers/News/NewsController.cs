@@ -1,6 +1,8 @@
 ﻿using BIOLIFE.Controllers.News.Service;
 using BIOLIFE.Models;
 using BIOLIFE.Service.Redis;
+using BIOLIFE.Utilities;
+using BIOLIFE.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BIOLIFE.Controllers.News
@@ -85,6 +87,24 @@ namespace BIOLIFE.Controllers.News
                 return StatusCode(500); // Trả về lỗi 500 nếu có lỗi
             }
         }
+        public async Task<IActionResult> GetFindArticleByTitle(FindArticleModel requestObj)
+        {
+            try
+            {
+                var article_sv = new NewsService(configuration, redisService);
 
+                var data = await article_sv.FindArticleByTitle(requestObj);
+                return PartialView(data);
+
+            }
+            catch (Exception ex)
+            {
+                LogHelper.InsertLogTelegramByUrl(configuration["BotSetting:bot_token"], configuration["BotSetting:bot_group_id"], "FindArticleByTitle-NewsController:" + ex.ToString());
+
+                return PartialView();
+            }
+
+
+        }
     }
 }

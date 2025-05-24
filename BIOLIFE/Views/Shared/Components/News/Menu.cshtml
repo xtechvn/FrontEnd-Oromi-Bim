@@ -5,13 +5,22 @@
     if (Model != null)
     {
         <div class="content">
-            <ul class="list-cat">
-                <li class="active"> <a href="/tin-tuc" class="cat-tag">Tất cả</a></li>
-                @foreach (var item in Model)
-                {
-                    <li> <a href="@(Html.GetStaticUrlCategory(item.name, item.id) )" class="cat-tag">@item.name</a></li>
-                }
-            </ul>
+            <div class="flex">
+                <ul class="list-cat">
+
+                    <li class="active Category-tag"> <a href="/tin-tuc"data-id="39" class="cat-tag">Tất cả</a></li>
+                    @foreach (var item in Model)
+                    {
+                        <li class="Category-tag"> <a href="javascript:void(0)" data-id="@item.id" class="cat-tag">@item.name</a></li>
+                    }
+                </ul>
+                <div class="form-search">
+
+                    <input id="text_input" type="text" placeholder="Tìm kiếm tin...">
+                    <button type="button" onclick="news.GetFindArticleByTitle()" text_input"" class="btn-search"><i class="icon icon-search"></i></button>
+
+                </div>
+            </div>
         </div>
     }
 }
