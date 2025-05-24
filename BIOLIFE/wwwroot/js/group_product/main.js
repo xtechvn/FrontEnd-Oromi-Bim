@@ -44,7 +44,7 @@ $(document.body).on('click', '.dk-sp', function (e) {
         success: function (data) {
             data = JSON.parse(data)
             if (data.is_success == true) {
-                
+                $('#popup-dathang').attr('style', 'display:none;')
 
             }
         },
