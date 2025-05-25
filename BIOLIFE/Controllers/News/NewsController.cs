@@ -24,10 +24,10 @@ namespace BIOLIFE.Controllers.News
             // Khởi tạo các param phân vào các ViewComponent
             var article_sv = new NewsService(configuration, redisService);
 
-            ViewBag.category_id = 39;// Convert.ToInt32(configuration["menu:news_parent_id"]);
+            ViewBag.category_id = Convert.ToInt32(configuration["menu:news_parent_id"]);
             ViewBag.page = page;
             ViewBag.page_size = Convert.ToInt32(configuration["blognews:page_size"]);
-            ViewBag.total_items = await article_sv.getTotalNews(-1); // Lấy ra tổng toàn bộ bản ghi theo chuyên mục
+            ViewBag.total_items = await article_sv.getTotalNews(Convert.ToInt32(configuration["menu:news_parent_id"])); // Lấy ra tổng toàn bộ bản ghi theo chuyên mục
             return View();
         }
 

@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+    $(document.body).on('click', '.action_page', function (e) {
+        var element = $(this)
+        $('.page').removeClass('active')
+        element.closest('.page').addClass('active')
+        var action_page = element.closest('.active').attr('data-page')
+        var id = $('.active .cat-tag').attr('data-id')
+        news.bin_news_home(id, action_page);
+        
+    });
     $(document.body).on('click', '.Category-tag .cat-tag', function (e) {
         var element = $(this)
         $('.Category-tag').removeClass('active')

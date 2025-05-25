@@ -180,5 +180,64 @@ namespace BIOLIFE.Controllers.Product.Service
                 return 0;
             }
         }
+        public async Task<List<Province>> GetAllProvinces(LocationRequestModel request)
+        {
+            try
+            {
+                string response_api = string.Empty;
+                var connect_api_us = new ConnectApi(configuration, redisService);
+
+
+                response_api = await connect_api_us.CreateHttpRequest("/api/Location/province", request);
+
+                // Nhan ket qua tra ve                            
+                var JsonParent = JArray.Parse("[" + response_api + "]");
+                int status = Convert.ToInt32(JsonParent[0]["status"]);
+
+                if (status == ((int)ResponseType.SUCCESS) && JsonParent[0]["data"] != null)
+                {
+                    var product_list = JsonConvert.DeserializeObject<List<Province>>(JsonParent[0]["data"].ToString());
+                    return product_list;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public async Task<List<District>> GetAllDistrict(LocationRequestModel request)
+        {
+            try
+            {
+                string response_api = string.Empty;
+                var connect_api_us = new ConnectApi(configuration, redisService);
+
+
+
+                response_api = await connect_api_us.CreateHttpRequest("/api/Location/district", request);
+
+                // Nhan ket qua tra ve                            
+                var JsonParent = JArray.Parse("[" + response_api + "]");
+                int status = Convert.ToInt32(JsonParent[0]["status"]);
+
+                if (status == ((int)ResponseType.SUCCESS) && JsonParent[0]["data"] != null)
+                {
+                    var product_list = JsonConvert.DeserializeObject<List<District>>(JsonParent[0]["data"].ToString());
+                    return product_list;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 
+var new_id = 39; // Tổng số sản phẩm của 1 box
 var total_product = 12; // Tổng số sản phẩm của 1 box
 var group_id_product_top = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
 var group_id_product_top_1 = 1060;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
@@ -6,7 +7,7 @@ var group_id_product_top_2 = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI 
 var group_id_product_top_3 = 1059;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
 
 $(document).ready(function () {
-    
+
     group_product.bind_list_group_product();
     group_product.bind_list_product_top();
     group_product.bind_list_product_top_1();
@@ -14,8 +15,9 @@ $(document).ready(function () {
     group_product.bind_list_product_top_3();
     group_product.bind_list_menu_product(); // danh mục sản phẩm trang chủ bên trái /Home
     group_product.bind_list_product_bottom_top();
+    group_product.bind_list_new_latest();
 
-    
+
     // Page load render data by group product id
     var view_name = "~/Views/Shared/Components/Product/ProductListViewComponent.cshtml";
     var skip = 0;
@@ -34,8 +36,27 @@ $(document.body).on('click', '.dk-sp', function (e) {
         ProvinceId: $('#ProvinceId').val(),
         FullName: $('#ShopName').val(),
         Phone: $('#phone').val(),
-        Name: $('#name').val(),  
+        Name: $('#name').val(),
     }
+    if (request.Name == '') {
+        $('.err-name').attr('style', 'color:red;display:block')
+        return false
+    } else {
+        $('.err-name').attr('style', 'color:red;display:none')
+    }
+    if (request.Phone == '') {
+        $('.err-phone').attr('style', 'color:red;display:block')
+        return false
+    } else {
+        $('.err-phone').attr('style', 'color:red;display:none')
+    }
+    if (request.FullName == '') {
+        $('.err-ShopName').attr('style', 'color:red;display:block')
+        return false
+    } else {
+        $('.err-ShopName').attr('style', 'color:red;display:none')
+    }
+   
     $.ajax({
         dataType: 'html',
         type: 'POST',
@@ -43,9 +64,18 @@ $(document.body).on('click', '.dk-sp', function (e) {
         data: { request },
         success: function (data) {
             data = JSON.parse(data)
+   
             if (data.is_success == true) {
-                $('#popup-dathang').attr('style', 'display:none;')
+                $('.ss-dk').attr('style', 'color:red;display:block')
+                setTimeout(function () {
+                    $('#popup-dathang').attr('style', 'display:none;')
+                }, 500);
+               
+                
 
+            } else {
+               
+                $('.ss-dk').attr('style', 'color:red;display:none')
             }
         },
         error: function (xhr, status, error) {
@@ -58,9 +88,10 @@ $(document.body).on('click', '.open-popup', function (e) {
     $('.select-styled').attr('style', 'display:none;')
     $('#popup-dathang').attr('style', 'display: block;')
     var element = $(this)
-
+    group_product.load_Province()
+    group_product.load_District()
     var request = {
-        id : element.attr('data-id')
+        id: element.attr('data-id')
     }
     $.ajax({
         dataType: 'html',
@@ -68,7 +99,7 @@ $(document.body).on('click', '.open-popup', function (e) {
         url: '/Product/GetProductDetail',
         data: { request },
         success: function (data) {
-            data= JSON.parse(data)
+            data = JSON.parse(data)
             if (data.is_success == true) {
                 if (data.data.product_main == null && data.data.product_sub != null) {
                     var img = '';
@@ -78,13 +109,13 @@ $(document.body).on('click', '.open-popup', function (e) {
                         img = data.data.product_sub[0].avatar
                     }
 
-                    $("#ProductId").html('<option value="' + data.data.product_sub[0]._id+'">' + data.data.product_sub[0].name + '</option>')
+                    $("#ProductId").html('<option value="' + data.data.product_sub[0]._id + '">' + data.data.product_sub[0].name + '</option>')
                     $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
                         '<div class= "price-sp" > ' + group_product.Comma(data.data.product_sub[0].amount) + ' đ</div >' +
                         ' <img src="' + img + '" alt="">')
                 } else {
                     var img = '';
-                    $("#ProductId").html('<option value="' + data.data.product_main._id +'">' + data.data.product_main.name + '</option>')
+                    $("#ProductId").html('<option value="' + data.data.product_main._id + '">' + data.data.product_main.name + '</option>')
                     if (data.data.product_main.avatar.indexOf("https://static-image.adavigo.com/") == -1) {
                         img = "https://static-image.adavigo.com/" + data.data.product_main.avatar
                     } else {
@@ -94,7 +125,7 @@ $(document.body).on('click', '.open-popup', function (e) {
                         '<div class= "price-sp" > ' + group_product.Comma(data.data.product_main.amount) + ' đ</div >' +
                         ' <img src="' + img + '" alt="">')
                 }
-                
+
             }
         },
         error: function (xhr, status, error) {
@@ -125,7 +156,7 @@ $(document.body).on('click', '.menu_group_product', function (e) {
 $(document.body).on('click', '.ajax_action_page', function (e) {
 
     var page_index = (parseInt($(this).data("page")) - 1) * total_product;
-     //// Sau khi bắn link, lấy giá trị group_id
+    //// Sau khi bắn link, lấy giá trị group_id
     debugger;
     var groupId = lib.getUrlParameter('group_id');
     var group_product_id = groupId == null ? -1 : parseInt(groupId);
@@ -151,7 +182,7 @@ var lib = {
             }
         }
         return null; // Trả về null nếu không tìm thấy tham số
-    }   
+    }
 }
 var group_product = {
 
@@ -186,7 +217,7 @@ var group_product = {
                 $('#product-top-list').html(data);
                 const swiperFlash = new Swiper('.section-flashsale .product-slide', {
                     loop: false,
-                    pagination: false,                    
+                    pagination: false,
                     spaceBetween: 15,
                     slidesPerView: 1.5,
                     breakpoints: {
@@ -426,7 +457,7 @@ var group_product = {
                 $('#group-product-top').html(data);
                 var GroupProduct_Id = $('#group-product-top .active').attr('data-GroupProductId')
                 group_product.bind_list_product_top_element(GroupProduct_Id, $('.list-product'))
-                
+
                 const swiperADS = new Swiper('.banner-cat', {
                     loop: false,
                     pagination: false,
@@ -508,15 +539,15 @@ var group_product = {
             url: '/home/loadProductTopComponent',
             data: { group_product_id: group_id_product_top, _page_index: 0, page_size: total_product, view_name: "~/Views/Shared/Components/Product/BoxProductSale.cshtml" },
             success: function (data) {
-                
-                $('.box_product_sale').html(data);                
+
+                $('.box_product_sale').html(data);
             },
             error: function (xhr, status, error) {
                 console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
             }
         });
     },
-    bind_list_product_top_element: function (id,element) { // bind box nhóm sản phẩm nổi bật trang home
+    bind_list_product_top_element: function (id, element) { // bind box nhóm sản phẩm nổi bật trang home
 
         $.ajax({
             dataType: 'html',
@@ -567,4 +598,75 @@ var group_product = {
             x1 = x1.replace(rgx, '$1' + ',' + '$2');
         return x1 + x2;
     },
+    bind_list_new_latest: function () {
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/news/home/get-article-list.json',
+            data: { category_id: new_id, page: 1, view_name: "~/Views/Shared/Components/News/NewLatest.cshtml" },
+            success: function (data) {
+                $('#list-new-latest').html(data);
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+    },
+    load_Province: function () {
+        var html_option = '<option value="{id}">{name}</option>'
+        var request = {
+            id: 0
+        }
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/Product/loadProvinces',
+            data: { request },
+            success: function (data) {
+                data = JSON.parse(data)
+                if (data.is_success == true) {
+                    var html = ''
+                    for (var i = 0; i < data.data.length - 1; i++) 
+                    {
+                        html += html_option.replaceAll('{id}', data.data[i].id).replaceAll('{name}', data.data[i].name);
+
+                    }
+                }
+                $('#ProvinceId').html(html);
+            }
+        
+            
+        });
+    },
+load_District: function () {
+    var html_option = '<option value="{id}">{name}</option>'
+    var request = {
+        id: $('#ProvinceId').val()
+    }
+    $.ajax({
+        dataType: 'html',
+        type: 'POST',
+        url: '/Product/loadDistrict',
+        data: { request },
+        success: function (data) {
+            data = JSON.parse(data)
+            var html = ''
+            if (data.is_success == true) {
+                if (data.data.length > 0) {
+                    for (var i = 0; i < data.data.length - 1; i++) {
+                        html += html_option.replaceAll('{id}', data.data[i].id).replaceAll('{name}', data.data[i].name);
+
+                    }
+                } else {
+                    html ='<option value="0"></option>'
+                }
+               
+            }
+            $('#DistrictId').html(html);
+        },
+        error: function (xhr, status, error) {
+            console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+        }
+    });
+},
 }

@@ -4,6 +4,7 @@ using BIOLIFE.Models.Products;
 using BIOLIFE.Service.Redis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Telegram.Bot.Requests.Abstractions;
 
 namespace BIOLIFE.Controllers.Product
 {
@@ -153,7 +154,7 @@ namespace BIOLIFE.Controllers.Product
             try
             {
                 var data_result = await productsService.SeverProductRegistration(request);
-                if(data_result > 0)
+                if(data_result == 0)
                 return Ok(new
                 {
                     is_success = true,
@@ -171,6 +172,51 @@ namespace BIOLIFE.Controllers.Product
                 is_success = false,
             });
         }
-
+        public async Task<IActionResult> loadProvinces(LocationRequestModel request)
+        {
+            try
+            {
+                var data_result = await productsService.GetAllProvinces(request);
+                if (data_result != null)
+                    return Ok(new
+                    {
+                        is_success = true,
+                        data = data_result
+                    });
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần
+               
+                return StatusCode(500); // Trả về lỗi 500 nếu có lỗi
+            }
+            return Ok(new
+            {
+                is_success = false,
+            });
+        }
+        public async Task<IActionResult> loadDistrict(LocationRequestModel request)
+        {
+            try
+            {
+                var data_result = await productsService.GetAllDistrict(request);
+                if (data_result !=null)
+                    return Ok(new
+                    {
+                        is_success = true,
+                        data = data_result
+                    });
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần
+               
+                return StatusCode(500); // Trả về lỗi 500 nếu có lỗi
+            }
+            return Ok(new
+            {
+                is_success = false,
+            });
+        }
     }
 }
