@@ -28,7 +28,53 @@ $(document).ready(function () {
 
     group_product.bind_list_product_flashSale();
 })
+//đk tư vân
+$(document.body).on('click', '.dk-tu-van', function (e) {
+    var form_dk_tv = $('#form-dk-tu-van')
+    form_dk_tv.validate({
+        rules: {
+
+            "name": "required",
+
+            "phone": {
+                required: true,
+
+            },
+            "ShopName": {
+                required: true,
+
+            },
+
+        },
+        messages: {
+            "name": "Họ tên không được bỏ trống",
+
+            "phone": {
+                required: "Số điện thoại không được bỏ trống",
+
+            },
+            "ShopName": {
+                required: "Tên công ty / cửa hàng không được bỏ trống",
+
+            },
+
+
+        }
+    });
+    if (form_dk_tv.valid()) {
+
+        $('.ss-dk-tv').attr('style', 'color:red;display:block')
+        setTimeout(function () {
+            $('.ss-dk-tv').attr('style', 'color:red;display:none')
+        }, 2000 );
+
+    }
+
+    
+});
+
 $(document.body).on('click', '.dk-sp', function (e) {
+    var form_validate = $('#form-dk-sp')
     var request = {
         Note: $('#note').val(),
         ProductId: $('#ProductId').val(),
@@ -38,50 +84,65 @@ $(document.body).on('click', '.dk-sp', function (e) {
         Phone: $('#phone').val(),
         Name: $('#name').val(),
     }
-    if (request.Name == '') {
-        $('.err-name').attr('style', 'color:red;display:block')
-        return false
-    } else {
-        $('.err-name').attr('style', 'color:red;display:none')
-    }
-    if (request.Phone == '') {
-        $('.err-phone').attr('style', 'color:red;display:block')
-        return false
-    } else {
-        $('.err-phone').attr('style', 'color:red;display:none')
-    }
-    if (request.FullName == '') {
-        $('.err-ShopName').attr('style', 'color:red;display:block')
-        return false
-    } else {
-        $('.err-ShopName').attr('style', 'color:red;display:none')
-    }
-   
-    $.ajax({
-        dataType: 'html',
-        type: 'POST',
-        url: '/Product/SeverProductRegistration',
-        data: { request },
-        success: function (data) {
-            data = JSON.parse(data)
-   
-            if (data.is_success == true) {
-                $('.ss-dk').attr('style', 'color:red;display:block')
-                setTimeout(function () {
-                    $('#popup-dathang').attr('style', 'display:none;')
-                }, 500);
-               
-                
+    form_validate.validate({
+        rules: {
 
-            } else {
-               
-                $('.ss-dk').attr('style', 'color:red;display:none')
-            }
+            "name": "required",
+
+            "phone": {
+                required: true,
+             
+            },
+            "ShopName": {
+                required: true,
+           
+            },
+
         },
-        error: function (xhr, status, error) {
-            console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+        messages: {
+            "name": "Họ tên không được bỏ trống",
+
+            "phone": {
+                required: "Số điện thoại không được bỏ trống",
+           
+            },
+            "ShopName": {
+                required: "Tên công ty / cửa hàng không được bỏ trống",
+             
+            },
+
+            
         }
     });
+    if (form_validate.valid()) {
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/Product/SeverProductRegistration',
+            data: { request },
+            success: function (data) {
+                data = JSON.parse(data)
+
+                if (data.is_success == true) {
+                    $('.ss-dk').attr('style', 'color:red;display:block')
+                    setTimeout(function () {
+                        $('#popup-dathang').attr('style', 'display:none;')
+                    }, 500);
+
+
+
+                } else {
+
+                    $('.ss-dk').attr('style', 'color:red;display:none')
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+    }
+   
+   
 
 });
 $(document.body).on('click', '.open-popup', function (e) {

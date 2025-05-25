@@ -70,24 +70,27 @@
         </div>
         <div class="block-contact mt-5">
             <div class="flex">
-                <form>
+                <form id="form-dk-tu-van">
                     <div class="grid-box">
 
                         <h2 class="title-section text-center">Đăng kí tư vấn ngay</h2>
+
+                        <h5 class="title-section text-center ss-dk-tv" style="color:red;display:none">Đăng kí tư vấn thành công</h5>
+
                         <div class="grid-2">
                             <div class="form-group form-group-2">
                                 <label>Họ tên</label>
-                                <input class="form-control" type="text">
+                                <input id="name" name="name" class="form-control" type="text">
                             </div>
                             <div class="form-group form-group-2">
                                 <label>Số điện thoại</label>
-                                <input class="form-control" type="tel">
+                                <input id="phone" name="phone" class="form-control" type="tel">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Tên công ty / cửa hàng</label>
-                            <input class="form-control" type="text">
+                            <input id="ShopName" name="ShopName" class="form-control" type="text">
                         </div>
                         <div class="grid-2">
                             <div class="form-group form-group-2">
@@ -114,7 +117,10 @@
                             <textarea class="form-control" rows="3"></textarea>
                         </div>
                         <div class="action text-center">
-                            <a href="" class="btn btn-base" style="min-width: 170px;">Đăng ký</a>
+                            <a href="javascript:void(0)" class="btn btn-base dk-tu-van" style="min-width: 170px;">
+                                Đăng
+                                ký
+                            </a>
                         </div>
                     </div>
                 </form>
