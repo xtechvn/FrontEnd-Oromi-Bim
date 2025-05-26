@@ -258,7 +258,7 @@ $(document.body).on('click', '.open-popup', function (e) {
         success: function (data) {
             data = JSON.parse(data)
             if (data.is_success == true) {
-                if (data.data.product_sub != null) {
+                if (data.data.product_sub != null && data.data.product_sub.length > 0) {
                     var img = '';
                     if (data.data.product_sub[0].avatar.indexOf("https://static-image.adavigo.com/") == -1) {
                         img = "https://static-image.adavigo.com/" + data.data.product_sub[0].avatar
