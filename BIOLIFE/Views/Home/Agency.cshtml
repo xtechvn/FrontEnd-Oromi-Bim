@@ -1,4 +1,15 @@
-﻿<section class="section-daily">
+﻿<style>
+    .select-options {
+        display: none !important;
+    }
+    .select-styled {
+        display: none !important;
+    }
+    .error {
+        color: red !important;
+    }
+</style>
+<section class="section-daily">
     <div class="container">
         <div class="text-center mb-4">
             <h3 class="sub-title">Tại sao bạn nên hợp tác cùng chúng tôi?</h3>
@@ -52,51 +63,29 @@
     <div class="container">
         <div class="block-contact">
             <div class="flex">
-                <form>
+                <form id="form-dk-dl">
                     <div class="grid-box">
 
-                        <h2 class="title-section text-center">Đăng kí tư vấn ngay</h2>
+                        <h2 class="title-section text-center">Đăng kí đại lý</h2>
+
+                        <h5 class="title-section text-center ss-dk-dl" style="color:red;display:none">Đăng kí đại lý thành công</h5>
+
                         <div class="grid-2">
                             <div class="form-group form-group-2">
-                                <label>Họ tên</label>
-                                <input class="form-control" type="text">
+                                <label>Họ tên / Tên công ty</label>
+                                <input id="Name-dl" name="Name-dl" class="form-control" type="text">
                             </div>
                             <div class="form-group form-group-2">
                                 <label>Số điện thoại</label>
-                                <input class="form-control" type="tel">
+                                <input id="Phone-dl" name="Phone-dl" class="form-control" type="tel">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Tên công ty / cửa hàng</label>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="grid-2">
-                            <div class="form-group form-group-2">
-                                <label>Tỉnh thành </label>
-                                <select class="form-control">
-                                    <option>Khu vực</option>
-                                    <option>Khu vực 2</option>
-                                </select>
-                            </div>
-                            <div class="form-group form-group-2">
-                                <label>Khu vực hoạt động</label>
-                                <select class="form-control">
-                                    <option>Khu vực</option>
-                                    <option>Khu vực 2</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Số lượng nhập dự kiến / tháng</label>
-                            <input class="form-control" type="number">
                         </div>
                         <div class="form-group">
                             <label>Lời nhắn</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" id="Note-dl" rows="3"></textarea>
                         </div>
                         <div class="action text-center">
-                            <a href="#popup-dathang" class="btn btn-base open-popup" style="min-width: 170px;">
+                            <a href="javascript:void(0)" class="btn btn-base dk-dl" style="min-width: 170px;">
                                 Đăng
                                 ký
                             </a>

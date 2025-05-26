@@ -5,6 +5,9 @@
     .select-styled{
         display:none !important;
     }
+    .select-options {
+        display: none !important;
+    }
 
     .error{
         color:red !important;
@@ -25,7 +28,7 @@
             </svg>
 
         </a>
-        <a href="#popup-dkdaily" class="btn btn-white btn-icon open-popup">
+        <a href="#popup-dkdaily" class="btn btn-white btn-icon open-popup-dl">
             Đăng kí làm đại lý
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M17.0306 12.5306L9.53055 20.0306C9.46087 20.1002 9.37815 20.1555 9.2871 20.1932C9.19606 20.2309 9.09847 20.2503 8.99993 20.2503C8.90138 20.2503 8.8038 20.2309 8.71276 20.1932C8.62171 20.1555 8.53899 20.1002 8.4693 20.0306C8.39962 19.9609 8.34435 19.8781 8.30663 19.7871C8.26892 19.6961 8.24951 19.5985 8.24951 19.4999C8.24951 19.4014 8.26892 19.3038 8.30663 19.2128C8.34435 19.1217 8.39962 19.039 8.4693 18.9693L15.4396 11.9999L8.4693 5.03055C8.32857 4.88982 8.24951 4.69895 8.24951 4.49993C8.24951 4.30091 8.32857 4.11003 8.4693 3.9693C8.61003 3.82857 8.80091 3.74951 8.99993 3.74951C9.19895 3.74951 9.38982 3.82857 9.53055 3.9693L17.0306 11.4693C17.1003 11.539 17.1556 11.6217 17.1933 11.7127C17.2311 11.8038 17.2505 11.9014 17.2505 11.9999C17.2505 12.0985 17.2311 12.1961 17.1933 12.2871C17.1556 12.3782 17.1003 12.4609 17.0306 12.5306Z" fill="#B37B54"></path>
@@ -144,7 +147,7 @@
                     </div>
                 </div>
                 <div class="text-center my-4">
-                    <a href="san-pham/tim-kiem?p=" class="text-green font-weight-bold">Xem thêm</a>
+                    <a href="/san-pham" class="text-green font-weight-bold">Xem thêm</a>
                 </div>
             </div>
         </div>
@@ -181,7 +184,7 @@
                     </div>
                 </div>
                 <div class="text-center my-4">
-                    <a href="" class="text-green font-weight-bold">Xem thêm</a>
+                    <a href="/san-pham" class="text-green font-weight-bold">Xem thêm</a>
                 </div>
             </div>
         </div>
@@ -218,7 +221,7 @@
                     </div>
                 </div>
                 <div class="text-center my-4">
-                    <a href="" class="text-green font-weight-bold">Xem thêm</a>
+                    <a href="/san-pham" class="text-green font-weight-bold">Xem thêm</a>
                 </div>
             </div>
         </div>
@@ -255,7 +258,7 @@
                     </div>
                 </div>
                 <div class="text-center my-4">
-                    <a href="" class="text-green font-weight-bold">Xem thêm</a>
+                    <a href="/san-pham" class="text-green font-weight-bold">Xem thêm</a>
                 </div>
             </div>
         </div>
@@ -336,42 +339,17 @@
 
                         <div class="grid-2">
                             <div class="form-group form-group-2">
-                                <label>Họ tên</label>
-                                <input id="name" name="name" class="form-control" type="text">
+                                <label>Họ tên / Tên công ty</label>
+                                <input id="Name-tv" name="Name-tv" class="form-control" type="text">
                             </div>
                             <div class="form-group form-group-2">
                                 <label>Số điện thoại</label>
-                                <input id="phone" name="phone" class="form-control" type="tel">
+                                <input id="Phone-tv" name="Phone-tv" class="form-control" type="tel">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Tên công ty / cửa hàng</label>
-                            <input id="ShopName" name="ShopName" class="form-control" type="text">
-                        </div>
-                        <div class="grid-2">
-                            <div class="form-group form-group-2">
-                                <label>Tỉnh thành </label>
-                                <select class="form-control">
-                                    <option>Khu vực</option>
-                                    <option>Khu vực 2</option>
-                                </select>
-                            </div>
-                            <div class="form-group form-group-2">
-                                <label>Khu vực hoạt động</label>
-                                <select class="form-control">
-                                    <option>Khu vực</option>
-                                    <option>Khu vực 2</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Số lượng nhập dự kiến / tháng</label>
-                            <input class="form-control" type="number">
                         </div>
                         <div class="form-group">
                             <label>Lời nhắn</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control"id="Note-tv" rows="3"></textarea>
                         </div>
                         <div class="action text-center">
                             <a href="javascript:void(0)" class="btn btn-base dk-tu-van" style="min-width: 170px;">
@@ -409,7 +387,7 @@
 
                                 <div class="grid-2">
                                     <div class="form-group form-group-2">
-                                        <label>Họ tên</label>
+                                        <label>Họ tên / Tên công ty</label>
                                         <input id="name" name="name" class="form-control" type="text">
                                         <label class="err-name" style="color:red;display:none">không được bỏ trống</label>
                                     </div>
@@ -419,35 +397,28 @@
                                         <label class="err-phone" style="color:red;display:none">không được bỏ trống</label>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Tên công ty / cửa hàng</label>
-                                    <input id="ShopName" name="ShopName" class="form-control" type="text">
-                                    <label class="err-ShopName" style="color:red;display:none">không được bỏ trống</label>
-                                </div>
                                 <div class="grid-2">
                                     <div class="form-group form-group-2">
                                         <label>Tỉnh thành </label>
-                                        <select class="form-control" id="ProvinceId" onchange="group_product.load_District()">
-                                           <option value="1">Nà Nội</option>
+                                        <select class="form-control ProvinceId" id="ProvinceId" onchange="group_product.load_District()">
                                         </select>
                                     </div>
                                     <div class="form-group form-group-2">
                                         <label>Khu vực hoạt động</label>
-                                        <select class="form-control" id="DistrictId">
-                                            <option value="1">Cầu Giấy</option>
+                                        <select class="form-control DistrictId" id="DistrictId">
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Sản phẩm</label>
                                     <select class="form-control" id="ProductId">
-                                   
                                     </select>
-                                    @* <div class="mt-2">
-                                        <p>Nơi sản xuất: Mỹ</p>
-                                        <p>Số lượng: 42 miếng</p>
-                                    </div> *@
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng</label>
+                                    <input id="Quantity" name="Quantity" class="form-control" type="number">
 
                                 </div>
                                 <div class="form-group">
@@ -484,58 +455,28 @@
             <div class="section-contact">
                 <div class="block-contact">
                     <h2 class="title-section text-center">Đăng kí đại lý</h2>
-
+                    <h5 class="title-section text-center ss-dk-dl" style="color:red;display:none">Đăng kí đại lý thành công</h5>
                     <div class="flex">
-                        <form>
+                        <form id="form-dk-dl">
                             <div class="grid-box">
 
                                 <div class="grid-2">
                                     <div class="form-group form-group-2">
-                                        <label>Họ tên</label>
-                                        <input class="form-control" type="text">
+                                        <label>Họ tên / Tên công ty / Tên công ty </label>
+                                        <input id="name-dl" name="name-dl" class="form-control" type="text">
                                     </div>
                                     <div class="form-group form-group-2">
                                         <label>Số điện thoại</label>
-                                        <input class="form-control" type="tel">
+                                        <input id="phone-dl" name="phone-dl" class="form-control" type="tel">
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Tên công ty / cửa hàng</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                                <div class="grid-2">
-                                    <div class="form-group form-group-2">
-                                        <label>Tỉnh thành </label>
-                                        <select class="form-control">
-                                            
-                                        </select>
-                                    </div>
-                                    <div class="form-group form-group-2">
-                                        <label>Khu vực hoạt động</label>
-                                        <select class="form-control">
-                                            
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Sản phẩm</label>
-                                    <select class="form-control">
-                                        <option>Sản phẩm</option>
-                                        <option>Sản phẩm 2</option>
-                                    </select>
-                                    <div class="mt-2">
-                                        <p>Nơi sản xuất: Mỹ</p>
-                                        <p>Số lượng: 42 miếng</p>
-                                    </div>
-
-                                </div>
                                 <div class="form-group">
                                     <label>Lời nhắn</label>
-                                    <textarea class="form-control" rows="3"></textarea>
+                                    <textarea class="form-control" id="Note-dl" rows="3"></textarea>
                                 </div>
                                 <div class="action text-center">
-                                    <a href="#popup-dathang" class="btn btn-base open-popup" style="min-width: 170px;">
+                                    <a href="javascript:void(0)" class="btn btn-base dk-dl" style="min-width: 170px;">
                                         Đăng
                                         ký
                                     </a>
@@ -543,7 +484,7 @@
                             </div>
                         </form>
                         <div class="box-product">
-                           
+
                             <img src="images/img1.jpg" alt="">
                         </div>
                     </div>

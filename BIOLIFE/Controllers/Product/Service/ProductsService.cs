@@ -151,7 +151,7 @@ namespace BIOLIFE.Controllers.Product.Service
                 return null;
             }
         }
-        public async Task<int> SeverProductRegistration(ProductRegistrationModel request)
+        public async Task<int> SeverOrder(ProductRegistrationModel request)
         {
             try
             {
@@ -159,7 +159,7 @@ namespace BIOLIFE.Controllers.Product.Service
                 var connect_api_us = new ConnectApi(configuration, redisService);
           
 
-                response_api = await connect_api_us.CreateHttpRequest("/api/ProductRegistration/SeverProductRegistration.json", request);
+                response_api = await connect_api_us.CreateHttpRequest("/api/order/confirm-order", request);
 
                 // Nhan ket qua tra ve                            
                 var JsonParent = JArray.Parse("[" + response_api + "]");
@@ -167,17 +167,16 @@ namespace BIOLIFE.Controllers.Product.Service
 
                 if (status == ((int)ResponseType.SUCCESS) && JsonParent[0]["data"] != null)
                 {
-                    var product_list = JsonConvert.DeserializeObject<List<ProductMongoDbModel>>(JsonParent[0]["data"].ToString());
-                    return 1;
+                    return 0;
                 }
                 else
                 {
-                    return 0;
+                    return -1;
                 }
             }
             catch
             {
-                return 0;
+                return -1;
             }
         }
         public async Task<List<Province>> GetAllProvinces(LocationRequestModel request)
@@ -237,6 +236,35 @@ namespace BIOLIFE.Controllers.Product.Service
             catch
             {
                 return null;
+            }
+        }
+        public async Task<int> insertComments(CommentsModel request)
+        {
+            try
+            {
+                string response_api = string.Empty;
+                var connect_api_us = new ConnectApi(configuration, redisService);
+
+
+
+                response_api = await connect_api_us.CreateHttpRequest("/api/push-comments", request);
+
+                // Nhan ket qua tra ve                            
+                var JsonParent = JArray.Parse("[" + response_api + "]");
+                int status = Convert.ToInt32(JsonParent[0]["status"]);
+
+                if (status == ((int)ResponseType.SUCCESS) )
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch
+            {
+                return 0;
             }
         }
     }

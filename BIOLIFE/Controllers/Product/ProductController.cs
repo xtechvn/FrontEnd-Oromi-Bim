@@ -153,7 +153,15 @@ namespace BIOLIFE.Controllers.Product
         {
             try
             {
-                var data_result = await productsService.SeverProductRegistration(request);
+                var model = new CartConfirmRequestModel();
+                var cart = new CartConfirmItemRequestModel();
+                cart.quanity = request.Quantity;
+                cart.id = request.ProductId;
+                cart.product_id = request.ProductId;
+                model.carts.Add(cart);
+                model.address.provinceid = request.ProvinceId;
+                model.address.districtid = request.DistrictId;
+                var data_result = await productsService.SeverOrder(request);
                 if(data_result == 0)
                 return Ok(new
                 {
@@ -216,6 +224,28 @@ namespace BIOLIFE.Controllers.Product
             return Ok(new
             {
                 is_success = false,
+            });
+        }
+        public async Task<IActionResult> SeverComment(CommentsModel model)
+        {
+            try
+            {
+                var data_result = await productsService.insertComments(model);
+                if (data_result > 0)
+                return Ok(new
+                {
+                    is_success = true,
+
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500); // Trả về lỗi 500 nếu có lỗi
+            }
+            return Ok(new
+            {
+                is_success = false,
+
             });
         }
     }

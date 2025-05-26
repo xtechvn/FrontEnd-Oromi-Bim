@@ -1,4 +1,15 @@
-﻿<div class="banner-breadcrumb">
+﻿<style>
+    .select-options {
+        display: none !important;
+    }
+    .select-styled {
+        display: none !important;
+    }
+    .error {
+        color: red !important;
+    }
+</style>
+<div class="banner-breadcrumb">
     <div class="breadcrumb">
 
         <div class="container">
@@ -79,42 +90,18 @@
 
                         <div class="grid-2">
                             <div class="form-group form-group-2">
-                                <label>Họ tên</label>
-                                <input id="name" name="name" class="form-control" type="text">
+                                <label>Họ tên / Tên công ty </label>
+                                <input id="Name-tv" name="Name-tv" class="form-control" type="text">
                             </div>
                             <div class="form-group form-group-2">
                                 <label>Số điện thoại</label>
-                                <input id="phone" name="phone" class="form-control" type="tel">
+                                <input id="Phone-tv" name="Phone-tv" class="form-control" type="tel">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label>Tên công ty / cửa hàng</label>
-                            <input id="ShopName" name="ShopName" class="form-control" type="text">
-                        </div>
-                        <div class="grid-2">
-                            <div class="form-group form-group-2">
-                                <label>Tỉnh thành </label>
-                                <select class="form-control">
-                                    <option>Khu vực</option>
-                                    <option>Khu vực 2</option>
-                                </select>
-                            </div>
-                            <div class="form-group form-group-2">
-                                <label>Khu vực hoạt động</label>
-                                <select class="form-control">
-                                    <option>Khu vực</option>
-                                    <option>Khu vực 2</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Số lượng nhập dự kiến / tháng</label>
-                            <input class="form-control" type="number">
-                        </div>
-                        <div class="form-group">
                             <label>Lời nhắn</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" id="Note-tv" rows="3"></textarea>
                         </div>
                         <div class="action text-center">
                             <a href="javascript:void(0)" class="btn btn-base dk-tu-van" style="min-width: 170px;">

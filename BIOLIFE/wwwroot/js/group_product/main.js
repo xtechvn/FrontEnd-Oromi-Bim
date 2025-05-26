@@ -28,45 +28,139 @@ $(document).ready(function () {
 
     group_product.bind_list_product_flashSale();
 })
+//open dl
+$(document.body).on('click', '.open-popup-dl', function (e) {
+    $('#popup-dkdaily').attr('style', 'display: block;')
+
+});
+//đk dl
+$(document.body).on('click', '.dk-dl', function (e) {
+    var form_dk_tv = $('#form-dk-dl')
+    form_dk_tv.validate({
+        rules: {
+
+            "Name-dl": "required",
+
+            "Phone-dl": {
+                required: true,
+
+            },
+        },
+        messages: {
+            "Name-dl": "Họ tên / Tên công ty  không được bỏ trống",
+
+            "Phone-dl": {
+                required: "Số điện thoại không được bỏ trống",
+
+            },
+        }
+    });
+    if (form_dk_tv.valid()) {
+        var model = {
+            Note: $('#Note-dl').val(),
+            Phone: $('#Phone-dl').val(),
+            Name: $('#Name-dl').val(),
+            Type: 'Đăng ký đại lý',
+
+        }
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/Product/SeverComment',
+            data: { model },
+            success: function (data) {
+                data = JSON.parse(data)
+
+                if (data.is_success == true) {
+                    $('.ss-dk-dl').html('Đăng ký đại lý thành công')
+                    $('.ss-dk-dl').attr('style', 'color:red;display:block')
+                    setTimeout(function () {
+                        $('.ss-dk-dl').attr('style', 'color:red;display:none')
+                    }, 2000);
+
+
+
+                } else {
+                    $('.ss-dk-dl').html('Đăng ký đại lý không thành công')                  
+                    $('.ss-dk-dl').attr('style', 'color:red;display:block')
+                    setTimeout(function () {
+                        $('.ss-dk-dl').attr('style', 'color:red;display:none')
+                    }, 2000);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+
+     
+
+    }
+
+
+});
 //đk tư vân
 $(document.body).on('click', '.dk-tu-van', function (e) {
     var form_dk_tv = $('#form-dk-tu-van')
     form_dk_tv.validate({
         rules: {
 
-            "name": "required",
+            "Name-tv": "required",
 
-            "phone": {
+            "Phone-tv": {
                 required: true,
 
             },
-            "ShopName": {
-                required: true,
 
-            },
 
         },
         messages: {
-            "name": "Họ tên không được bỏ trống",
+            "Name-tv": "Họ tên / Tên công ty không được bỏ trống",
 
-            "phone": {
+            "Phone-tv": {
                 required: "Số điện thoại không được bỏ trống",
 
             },
-            "ShopName": {
-                required: "Tên công ty / cửa hàng không được bỏ trống",
-
-            },
-
-
         }
     });
     if (form_dk_tv.valid()) {
+        var model = {
+            Note: $('#Note-tv').val(),
+            Phone: $('#Phone-tv').val(),
+            Name: $('#Name-tv').val(),
+            Type: 'Đăng ký tư vấn',
+            
+        }
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/Product/SeverComment',
+            data: { model },
+            success: function (data) {
+                data = JSON.parse(data)
 
-        $('.ss-dk-tv').attr('style', 'color:red;display:block')
-        setTimeout(function () {
-            $('.ss-dk-tv').attr('style', 'color:red;display:none')
-        }, 2000 );
+                if (data.is_success == true) {
+                    $('.ss-dk-tv').html('Đăng ký tư vấn thành công')
+                    $('.ss-dk-tv').attr('style', 'color:red;display:block')
+                    setTimeout(function () {
+                        $('.ss-dk-tv').attr('style', 'color:red;display:none')
+                    }, 2000);
+
+
+
+                } else {
+                    $('.ss-dk-tv').html('Đăng ký tư vấn không thành công')
+                    $('.ss-dk-tv').attr('style', 'color:red;display:block')
+                    setTimeout(function () {
+                        $('.ss-dk-tv').attr('style', 'color:red;display:none')
+                    }, 2000);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+   
 
     }
 
@@ -83,6 +177,7 @@ $(document.body).on('click', '.dk-sp', function (e) {
         FullName: $('#ShopName').val(),
         Phone: $('#phone').val(),
         Name: $('#name').val(),
+        Quantity: $('#Quantity').val(),
     }
     form_validate.validate({
         rules: {
@@ -145,6 +240,7 @@ $(document.body).on('click', '.dk-sp', function (e) {
    
 
 });
+
 $(document.body).on('click', '.open-popup', function (e) {
     $('.select-styled').attr('style', 'display:none;')
     $('#popup-dathang').attr('style', 'display: block;')
@@ -162,15 +258,19 @@ $(document.body).on('click', '.open-popup', function (e) {
         success: function (data) {
             data = JSON.parse(data)
             if (data.is_success == true) {
-                if (data.data.product_main == null && data.data.product_sub != null) {
+                if (data.data.product_sub != null) {
                     var img = '';
                     if (data.data.product_sub[0].avatar.indexOf("https://static-image.adavigo.com/") == -1) {
                         img = "https://static-image.adavigo.com/" + data.data.product_sub[0].avatar
                     } else {
                         img = data.data.product_sub[0].avatar
                     }
-
-                    $("#ProductId").html('<option value="' + data.data.product_sub[0]._id + '">' + data.data.product_sub[0].name + '</option>')
+                    var html_option = '<option value="{id}">{name}</option>'
+                    var html=''
+                    for (var i = 0; i <= data.data.product_sub.length - 1; i++) {
+                        html += html_option.replaceAll('{id}', data.data.product_sub[i]._id).replaceAll('{name}', data.data.product_sub[i].variation_detail[0].name +' - '+ data.data.product_sub[i].name)
+                    }
+                    $("#ProductId").html(html)
                     $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
                         '<div class= "price-sp" > ' + group_product.Comma(data.data.product_sub[0].amount) + ' đ</div >' +
                         ' <img src="' + img + '" alt="">')
@@ -689,11 +789,11 @@ var group_product = {
                     var html = ''
                     for (var i = 0; i < data.data.length - 1; i++) 
                     {
-                        html += html_option.replaceAll('{id}', data.data[i].id).replaceAll('{name}', data.data[i].name);
+                        html += html_option.replaceAll('{id}', data.data[i].provinceId).replaceAll('{name}', data.data[i].name);
 
                     }
                 }
-                $('#ProvinceId').html(html);
+                $('.ProvinceId').html(html);
             }
         
             
@@ -703,6 +803,9 @@ load_District: function () {
     var html_option = '<option value="{id}">{name}</option>'
     var request = {
         id: $('#ProvinceId').val()
+    }
+    if (request.id == null) {
+        request.id = 1;
     }
     $.ajax({
         dataType: 'html',
@@ -715,7 +818,7 @@ load_District: function () {
             if (data.is_success == true) {
                 if (data.data.length > 0) {
                     for (var i = 0; i < data.data.length - 1; i++) {
-                        html += html_option.replaceAll('{id}', data.data[i].id).replaceAll('{name}', data.data[i].name);
+                        html += html_option.replaceAll('{id}', data.data[i].districtId).replaceAll('{name}', data.data[i].name);
 
                     }
                 } else {
@@ -723,7 +826,7 @@ load_District: function () {
                 }
                
             }
-            $('#DistrictId').html(html);
+            $('.DistrictId').html(html);
         },
         error: function (xhr, status, error) {
             console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
