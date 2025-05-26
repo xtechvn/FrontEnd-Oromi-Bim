@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    $(document.body).on('click', '.form-search .btn-search', function (e) {
+        news.GetFindArticleByTitle()
+    });
     $(document.body).on('click', '.action_page', function (e) {
         var element = $(this)
         $('.page').removeClass('active')
