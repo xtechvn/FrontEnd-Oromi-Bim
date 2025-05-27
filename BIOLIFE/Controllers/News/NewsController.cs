@@ -108,8 +108,23 @@ namespace BIOLIFE.Controllers.News
 
                 return PartialView();
             }
+        } 
+        public async Task<IActionResult> NewsMostViewedArticle(FindArticleModel requestObj)
+        {
+            try
+            {
+                var News_Service = new NewsService(configuration, redisService);
 
+                var data = await News_Service.GetMostViewedArticles();
+                return PartialView(data);
 
+            }
+            catch (Exception ex)
+            {
+                LogHelper.InsertLogTelegramByUrl(configuration["BotSetting:bot_token"], configuration["BotSetting:bot_group_id"], "FindArticleByTitle-NewsController:" + ex.ToString());
+
+                return PartialView();
+            }
         }
     }
 }

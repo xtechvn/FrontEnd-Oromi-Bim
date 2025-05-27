@@ -34,6 +34,7 @@ $(document).ready(function () {
     const page = url_params.get('page') == null ? 1 : url_params.get('page');
     // Load tin trên trang chủ NEWS
     news.bin_news_home(category_id, page);
+    news.getNewsMostViewedArticle(1, page, category_id);
 
     //if (category_id <= 0) {         
     //    // Bin theo tin mới nhất của các chuyên mục
@@ -84,6 +85,23 @@ var news = {
         news.bin_news_home(id, page);
 
     },
+    getNewsMostViewedArticle: function (page, size, category_id) {
+        var requestObj = {
+            skip: page,
+            take: size,
+            category_id: category_id
+        };
+        $.ajax({
+            url: "/News/NewsMostViewedArticle",
+            type: 'post',
+            data: { requestObj: requestObj },
+            success: function (data) {
+                $("#Most_Viewed_Article").html(data);
+            },
+        });
+    },
+
+
     //bin_news_top: function (category_id, position_name, page) {
 
     //    $.ajax({

@@ -199,7 +199,7 @@ namespace BIOLIFE.Controllers.News.Service
             {
                 string response_api = string.Empty;
                 var connect_api_us = new ConnectApi(configuration, redisService);
-                
+
 
                 var result = await connect_api_us.CreateHttpRequest("/api/news/find-article.json", requestObj);
                 var jsonData = JObject.Parse(result);
@@ -219,6 +219,38 @@ namespace BIOLIFE.Controllers.News.Service
             catch (Exception ex)
             {
                 Utilities.LogHelper.InsertLogTelegramByUrl(configuration["BotSetting:bot_token"], configuration["BotSetting:bot_group_id"], "GetNewsDetail-NewServices:" + ex.ToString());
+            }
+            return null;
+        }
+        public async Task<List<ArticleResponse>> GetMostViewedArticles()
+        {
+            try
+            {
+                var requestObj = new Dictionary<string, object>
+                 {
+                     { "category_id",configuration["menu:news_parent_id"] }
+                 };
+
+                string response_api = string.Empty;
+                var connect_api_us = new ConnectApi(configuration, redisService);
+                var result = await connect_api_us.CreateHttpRequest(configuration["API:get_most_viewed_article"], requestObj);
+                var jsonData = JObject.Parse(result);
+                var status = int.Parse(jsonData["status"].ToString());
+
+                if (status == (int)ResponseType.SUCCESS)
+                {
+                    return JsonConvert.DeserializeObject<List<ArticleResponse>>(jsonData["data"].ToString());
+                }
+                else
+                {
+                    var msg = jsonData["msg"].ToString();
+                    Utilities.LogHelper.InsertLogTelegramByUrl(configuration["BotSetting:bot_token"], configuration["BotSetting:bot_group_id"], "GetMostViewedArticles-NewServices:" + msg);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogHelper.InsertLogTelegramByUrl(configuration["BotSetting:bot_token"], configuration["BotSetting:bot_group_id"], "GetMostViewedArticles-NewServices:" + ex.ToString());
             }
             return null;
         }

@@ -1,0 +1,29 @@
+﻿@using BIOLIFE.ViewModels;
+@using BIOLIFE.Utilities;
+@model List<ArticleResponse>
+
+@if (Model != null && Model.Any())
+{
+<div class="space-y-3 mt-3">
+    @foreach (var item in Model)
+    {
+        string link = @Html.GetStaticUrlNews(item.title, item.id);
+        <div class="item-news">
+            <div class="box-news">
+                <div class="thumb-art">
+                    <div class="thumb thumb-news">
+                        <a href="@link"><img src="@item.image_169" alt="@item.title"> </a>
+                    </div>
+                </div>
+                <div class="right-content">
+                    <h2 class="title-news">
+                        <a href="@link">  @item.title</a>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+        
+    }
+</div>
+}

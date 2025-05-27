@@ -38,52 +38,8 @@
                     <h3 class="title">
                         XEM NHIỀU NHẤT
                     </h3>
-                    <div class="list-news">
-                        <div class="item-news">
-                            <div class="box-news">
-                                <div class="thumb-art">
-                                    <div class="thumb thumb-news">
-                                        <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                                    </div>
-                                </div>
-                                <div class="right-content">
-                                    <h2 class="title-news">
-                                        <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                                    </h2>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-news">
-                            <div class="box-news">
-                                <div class="thumb-art">
-                                    <div class="thumb thumb-news">
-                                        <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                                    </div>
-                                </div>
-                                <div class="right-content">
-                                    <h2 class="title-news">
-                                        <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                                    </h2>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-news">
-                            <div class="box-news">
-                                <div class="thumb-art">
-                                    <div class="thumb thumb-news">
-                                        <a href=""><img src="images/banner.jpg" alt="" /> </a>
-                                    </div>
-                                </div>
-                                <div class="right-content">
-                                    <h2 class="title-news">
-                                        <a href="">Top những đồ chơi cho trẻ 7 tháng tuổi hữu ích nhất</a>
-                                    </h2>
-
-                                </div>
-                            </div>
-                        </div>
+                    <div class="list-news" id="Most_Viewed_Article">
+                  
                     </div>
                 </div>
 
@@ -115,6 +71,7 @@
 <script src="~/js/news/news_detail.js"></script>
 <script>
     news_detail.bin_news(@ViewBag.id);
+    news_detail.getNewsMostViewedArticle(1, 10, 39);
 </script>
 @*
 

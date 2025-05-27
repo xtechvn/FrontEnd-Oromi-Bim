@@ -21,6 +21,7 @@
     $(document.body).on('click', '.form-search .btn-search', function (e) {
         news_detail.GetFindArticleByTitle()
     });
+    news_detail.getNewsMostViewedArticle(1, page, category_id);
 });
 var news_detail = {
     bin_news_home: function (category_id, page) {
@@ -77,4 +78,20 @@ var news_detail = {
 
 
     },
+    getNewsMostViewedArticle: function (page, size, category_id) {
+        var requestObj = {
+            skip: page,
+            take: size,
+            category_id: category_id
+        };
+        $.ajax({
+            url: "/News/NewsMostViewedArticle",
+            type: 'post',
+            data: { requestObj: requestObj },
+            success: function (data) {
+                $("#Most_Viewed_Article").html(data);
+            },
+        });
+    },
+
 }
