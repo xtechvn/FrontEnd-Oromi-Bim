@@ -154,14 +154,21 @@ namespace BIOLIFE.Controllers.Product
             try
             {
                 var model = new CartConfirmRequestModel();
+                var address = new AddressClientFEModel();
                 var cart = new CartConfirmItemRequestModel();
-                cart.quanity = request.Quantity;
+                var cart_list = new List<CartConfirmItemRequestModel>();
+
+                address.provinceid = request.ProvinceId;
+                address.districtid = request.DistrictId;
+
+                cart.quanity = request.Quantity==0?1: request.Quantity;
                 cart.id = request.ProductId;
                 cart.product_id = request.ProductId;
-                model.carts.Add(cart);
-                model.address.provinceid = request.ProvinceId;
-                model.address.districtid = request.DistrictId;
-                var data_result = await productsService.SeverOrder(request);
+                cart_list.Add(cart);
+
+                model.carts = cart_list;
+                model.address = address;
+                var data_result = await productsService.SeverOrder(model);
                 if(data_result == 0)
                 return Ok(new
                 {

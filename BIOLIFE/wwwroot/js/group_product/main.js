@@ -2,9 +2,9 @@
 var new_id = 39; // Tổng số sản phẩm của 1 box
 var total_product = 12; // Tổng số sản phẩm của 1 box
 var group_id_product_top = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
-var group_id_product_top_1 = 1060;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
-var group_id_product_top_2 = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
-var group_id_product_top_3 = 1059;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
+var group_id_product_top_1 = 1059;// tã quần
+var group_id_product_top_2 = 1060;// tã dán
+var group_id_product_top_3 = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
 
 $(document).ready(function () {
 

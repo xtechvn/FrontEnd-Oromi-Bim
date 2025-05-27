@@ -151,7 +151,7 @@ namespace BIOLIFE.Controllers.Product.Service
                 return null;
             }
         }
-        public async Task<int> SeverOrder(ProductRegistrationModel request)
+        public async Task<int> SeverOrder(CartConfirmRequestModel request)
         {
             try
             {
