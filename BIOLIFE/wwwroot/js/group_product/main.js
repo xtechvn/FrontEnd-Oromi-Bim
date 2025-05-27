@@ -300,6 +300,7 @@ $(document.body).on('click', '.list-product-name', function (e) {
     element.addClass('active')
     var GroupProduct_Id = $('#group-product-top .active').attr('data-GroupProductId')
     group_product.bind_list_product_top_element(GroupProduct_Id, $('.list-product'))
+    
 });
 $(document.body).on('click', '.menu_group_product', function (e) {
 

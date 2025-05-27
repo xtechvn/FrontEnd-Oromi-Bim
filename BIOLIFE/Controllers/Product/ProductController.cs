@@ -168,6 +168,9 @@ namespace BIOLIFE.Controllers.Product
 
                 model.carts = cart_list;
                 model.address = address;
+                model.phone = request.Phone;
+                model.receivername = request.FullName;
+                model.note = request.Note;
                 var data_result = await productsService.SeverOrder(model);
                 if(data_result == 0)
                 return Ok(new

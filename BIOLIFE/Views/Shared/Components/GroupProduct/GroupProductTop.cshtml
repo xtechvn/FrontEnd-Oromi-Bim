@@ -2,24 +2,40 @@
 @using BIOLIFE.Utilities;
 @model List<CategoryModel>
 @inject IConfiguration Configuration
-@{ 
+@{
     var i = 0;
 }
 @if (Model != null)
 {
-<ul>
-    @foreach (var item in Model)
-    {
-        if (i == 0)
+    <ul>
+        @foreach (var item in Model)
         {
-            <li class="list-product-name active" data-GroupProductId="@item.id"><a href="javascripts:;" class="">@item.name</a></li>
+            if (i == 0)
+            {
+                if(item.group_product_child!=null && item.group_product_child.Count > 0)
+                {
+                    <li class="list-product-name active" data-GroupProductId="@item.group_product_child[0].id"><a href="javascripts:;" class="">@item.name</a></li>
+                }
+                else
+                {
+                    <li class="list-product-name active" data-GroupProductId="@item.id"><a href="javascripts:;" class="">@item.name</a></li>
+
+                }
+
+            }
+            else
+            {
+                if (item.group_product_child != null && item.group_product_child.Count > 0)
+                {
+                    <li class="list-product-name " data-GroupProductId="@item.group_product_child[0].id"><a href="javascripts:;" class="">@item.name</a></li>
+                }
+                else
+                {
+                    <li class="list-product-name " data-GroupProductId="@item.id"><a href="javascripts:;" class="">@item.name</a></li>
+
+                }
+            }
 
         }
-        else
-        {
-            <li class="list-product-name " data-GroupProductId="@item.id"><a href="javascripts:;" class="">@item.name</a></li>
-        }
-
-    }
-</ul>
+    </ul>
 }
