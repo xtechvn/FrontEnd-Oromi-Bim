@@ -168,13 +168,14 @@ $(document.body).on('click', '.dk-tu-van', function (e) {
 });
 
 $(document.body).on('click', '.dk-sp', function (e) {
+    $('.ss-dk').html('')
     var form_validate = $('#form-dk-sp')
     var request = {
         Note: $('#note').val(),
         ProductId: $('#ProductId').val(),
         DistrictId: $('#DistrictId').val(),
         ProvinceId: $('#ProvinceId').val(),
-        FullName: $('#ShopName').val(),
+        FullName: $('#name').val(),
         Phone: $('#phone').val(),
         Name: $('#name').val(),
         Quantity: $('#Quantity').val(),
@@ -219,15 +220,18 @@ $(document.body).on('click', '.dk-sp', function (e) {
                 data = JSON.parse(data)
 
                 if (data.is_success == true) {
+                    $('.ss-dk').html('Đăng ký sản phẩm thành công')
                     $('.ss-dk').attr('style', 'color:red;display:block')
                     setTimeout(function () {
                         $('#popup-dathang').attr('style', 'display:none;')
-                    }, 500);
-
-
+                    }, 2000);
 
                 } else {
-
+                    $('.ss-dk').html('Đăng ký sản phẩm không thành công')
+                    $('.ss-dk').attr('style', 'color:red;display:block')
+                    setTimeout(function () {
+                        $('#popup-dathang').attr('style', 'display:none;')
+                    }, 2000);
                     $('.ss-dk').attr('style', 'color:red;display:none')
                 }
             },
@@ -244,6 +248,7 @@ $(document.body).on('click', '.dk-sp', function (e) {
 $(document.body).on('click', '.open-popup', function (e) {
     $('.select-styled').attr('style', 'display:none;')
     $('#popup-dathang').attr('style', 'display: block;')
+    $('.product_sp').html('')
     var element = $(this)
     group_product.load_Province()
     group_product.load_District()
