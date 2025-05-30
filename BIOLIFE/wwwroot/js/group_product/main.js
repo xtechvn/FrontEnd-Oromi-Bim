@@ -315,7 +315,7 @@ $(document.body).on('click', '.menu_group_product', function (e) {
     var take = total_product;
     var div_location_render_data = ".component-product-list";
     var location_type = "HOME";
-    history.pushState(null, null, "/product?group_id=" + group_product_id); // Thay đổi đường dẫn mà không tải lại trang
+    history.pushState(null, null, "/san-pham?group_id=" + group_product_id); // Thay đổi đường dẫn mà không tải lại trang
 
     group_product.render_product_list(group_product_id, div_location_render_data, view_name, skip, take, location_type);
 });
@@ -654,11 +654,12 @@ var group_product = {
     //group_product_parent_id:  id của menu cha cho phần danh mục sản phẩm
     bind_list_menu_product: function () { // bind box nhóm danh mục ngành hàng vị trí left 
 
-        var group_product_parent_id = $("#group_product_parent_id").val() == undefined ? -1 : parseInt($("#group_product_parent_id").val()); // load theo chuyen trang
+        var group_parent_id = $("#group_parent_id").val() == undefined ? -1 : parseInt($("#group_parent_id").val()); // load theo chuyen trang
         var div_location_render_data = "";
         //  alert($("#group_product_parent_id").val());
-        if (group_product_parent_id == -1) {
-            group_product_parent_id = 32;   //Load danh muc trang chu
+     
+        if (group_parent_id == -1) {
+            group_parent_id = 32;   //Load danh muc trang chu
             div_location_render_data = "#group-product-left";
             swiper_name = ".banner-cat";
         } else {
@@ -671,7 +672,7 @@ var group_product = {
             dataType: 'html',
             type: 'POST',
             url: '/home/loadGroupProductLeftComponent',
-            data: { group_product_parent_id: group_product_parent_id },
+            data: { group_product_parent_id: group_parent_id },
             success: function (data) { // render ra các chuyên mục con
                 $(div_location_render_data).html(data);
                 const swiperADS = new Swiper(swiper_name, {

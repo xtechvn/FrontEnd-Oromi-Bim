@@ -20,9 +20,10 @@ namespace BIOLIFE.Controllers.Home
         }
         [Route("san-pham")]
         [HttpGet]
-        public async Task<IActionResult> Product()
+        public async Task<IActionResult> Product(int group_id)
         {
-            ViewBag.group_product_parent_id = -1;
+            ViewBag.group_product_parent_id = group_id == 0? - 1: group_id;
+            ViewBag.group_parent_id =  - 1;
             return View("~/Views/Product/GroupProductList.cshtml");
         }
 
