@@ -53,8 +53,9 @@ namespace BIOLIFE.Controllers.Home
             return View();
         }
         [Route("error")]
+        [Route("Error/404")]
         [HttpGet]
-        public async Task<IActionResult> NotFound(int id)
+        public async Task<IActionResult> NotFound()
         {
             return View();
         }
