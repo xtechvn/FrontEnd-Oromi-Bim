@@ -102,7 +102,14 @@ namespace BIOLIFE
                     pattern: "/san-pham/{title}--{product_code}",
                     defaults: new { controller = "Product", action = "Detail" });
             });
-         
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "error",
+                    pattern: "/error/{id}",
+                    defaults: new { controller = "Product", action = "NotFound" });
+            });
+
         }
     }
 }

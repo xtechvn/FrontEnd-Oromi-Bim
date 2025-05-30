@@ -52,6 +52,12 @@ namespace BIOLIFE.Controllers.Home
         {
             return View();
         }
+        [Route("error")]
+        [HttpGet]
+        public async Task<IActionResult> NotFound(int id)
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult loadHeaderComponent()
