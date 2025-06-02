@@ -102,9 +102,13 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1;
-    height: 50px;
-    width: 50px;
+    z-index: 99;
+    height: 44px;
+    width: 44px;
+    @media (max-width:991px) {
+        width: 35px;
+        height: 35px;
+    }
     padding: 0;
     border: none;
     color: #cccccc;

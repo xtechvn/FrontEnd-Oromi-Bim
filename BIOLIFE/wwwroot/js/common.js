@@ -90,3 +90,14 @@ $(document).ready(function () {
   });
   
 });
+const bannerSwiper = new Swiper(".banner-swiper .swiper", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    autoplay:true,
+    loop:true,
+    navigation: {
+        nextEl: ".banner-swiper .swiper-button-next",
+        prevEl: ".banner-swiper .swiper-button-prev",
+    },
+  
+});

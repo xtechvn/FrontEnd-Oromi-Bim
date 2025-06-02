@@ -43,7 +43,7 @@
                 </nav>
             </div>
         </header>*@
-
+ 
     <header class="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg">
@@ -61,30 +61,30 @@
                         <li class="nav-item active">
                             @*<a class="nav-link" href="/">Về Omori</a>*@
                         </li>
-                           @foreach (var item in Model)
-                            {
+                        @foreach (var item in Model)
+                        {
 
-                                <li class="nav-item @Html.Raw((item.path.IndexOf(current_url) >=0 && current_url!="")  ?"active":"")">
-                                    <a class="nav-link" href="@("/" + item.path.Replace("-"+ item.id,"" ) )">@item.name</a>
-                                </li>
-                            }
+                            <li class="nav-item @Html.Raw((item.path.IndexOf(current_url) >=0 && current_url!="")  ?"active":"")">
+                                <a class="nav-link" href="@("/" + item.path.Replace("-"+ item.id,"" ) )">@item.name</a>
+                            </li>
+                        }
                         @*<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Tã dán</a>
-                                <a class="dropdown-item" href="#">Tã quần</a>
-                                <a class="dropdown-item" href="#">Khăn ướt</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/tin-tuc">Tin tức</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dai-ly">Đại lý</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/lien-he">Liên hệ</a>
-                        </li>*@
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Tã dán</a>
+                                    <a class="dropdown-item" href="#">Tã quần</a>
+                                    <a class="dropdown-item" href="#">Khăn ướt</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/tin-tuc">Tin tức</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dai-ly">Đại lý</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/lien-he">Liên hệ</a>
+                            </li>*@
                     </ul>
                     <a href="#popup-dathang" class="btn btn-base open-popup">Đặt hàng ngay</a>
                 </div>

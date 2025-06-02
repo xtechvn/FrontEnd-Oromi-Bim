@@ -56,4 +56,15 @@
             </li>
         }
     </ul>
+    @for (int i = Model.CurrentPage - 2; i <= Model.CurrentPage + 2; i++)
+    {
+        if (i > 0 && i <= Model.TotalPages)
+        {
+            if (i == Model.CurrentPage && Model.CurrentPage < Model.TotalPages)
+            {
+                <a href="javascript:void(0)" class=" xemthem bt_xemthem_new" data-page="@i">Xem thêm</a>
+            }
+
+        }
+    }
 </div>

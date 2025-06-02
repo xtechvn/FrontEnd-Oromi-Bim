@@ -8,18 +8,18 @@
     @foreach (var item in Model.items)
     {
         string link = @Html.GetStaticUrlProduct(item.name, item._id);
-        <div class="swiper-slide pt-3" style="width: 224px; margin-right: 15px;">
+        <div class="swiper-slide pt-3">
             <div class="item-product">
                 <a  href="#popup-dathang" class="open-popup" data-id="@item._id">
                     @*<div class="tag">-50%</div>*@
-                    <div class="thumb thumb-product product-image">
+                    <div class="product-image">
                         <div class="thumb-product">
                             <img src="@Html.GetStaticUrlImage( item.avatar,Configuration)" alt="@item.name" />
                         </div>
                     </div>
                     <p class="product-title">@item.name</p>
                     <div class="product-price-info">
-                        <div class="price-details">
+                        <div class="price-details product-title">
                             <div class="price">
                                 @if (item.attributes != null)
                                 {
@@ -40,6 +40,7 @@
     }
 
 }
+
 
 
 

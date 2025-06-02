@@ -3,6 +3,15 @@ $(document).ready(function () {
     $(document.body).on('click', '.form-search .btn-search', function (e) {
         news.GetFindArticleByTitle()
     });
+    $(document.body).on('click', '.bt_xemthem_new', function (e) {
+        var element = $(this)
+        $('.page').removeClass('active')
+        element.closest('.page').addClass('active')
+        var action_page = parseInt($(this).attr("data-page")) + 1
+        var id = $('.active .cat-tag').attr('data-id')
+        news.bin_news_home(id, action_page);
+
+    });
     $(document.body).on('click', '.action_page', function (e) {
         var element = $(this)
         $('.page').removeClass('active')

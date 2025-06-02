@@ -1,9 +1,9 @@
 
 var new_id = 39; // Tổng số sản phẩm của 1 box
 var total_product = 12; // Tổng số sản phẩm của 1 box
-var group_id_product_top = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
-var group_id_product_top_1 = 1059;// tã quần
-var group_id_product_top_2 = 1060;// tã dán
+var group_id_product_top = -1;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
+var group_id_product_top_1 = 1060;// tã quần
+var group_id_product_top_2 = 1059;// tã dán
 var group_id_product_top_3 = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
 
 $(document).ready(function () {
@@ -28,6 +28,24 @@ $(document).ready(function () {
 
     group_product.bind_list_product_flashSale();
 })
+
+$(document.body).on('click', '.bt_xemthem', function (e) {
+    var index_xemthem = parseInt($(this).attr("data-page"))+1
+    
+    var page_index = (index_xemthem - 1) * total_product;
+    //// Sau khi bắn link, lấy giá trị group_id
+
+    $(this).attr("data-page", index_xemthem)
+    debugger;
+    var groupId = lib.getUrlParameter('group_id');
+    var group_product_id = groupId == null ? -1 : parseInt(groupId);
+    var view_name = "~/Views/Shared/Components/Product/ProductListViewComponent.cshtml";
+    var skip = page_index;
+    var take = total_product;
+    var div_location_render_data = ".component-product-list";
+    var location_type = "HOME";
+    group_product.render_product_list(group_product_id, div_location_render_data, view_name, skip, take, location_type);
+});
 //open dl
 $(document.body).on('click', '.open-popup-dl', function (e) {
     $('#popup-dkdaily').attr('style', 'display: block;')
@@ -81,7 +99,7 @@ $(document.body).on('click', '.dk-dl', function (e) {
 
 
                 } else {
-                    $('.ss-dk-dl').html('Đăng ký đại lý không thành công')                  
+                    $('.ss-dk-dl').html('Đăng ký đại lý không thành công')
                     $('.ss-dk-dl').attr('style', 'color:red;display:block')
                     setTimeout(function () {
                         $('.ss-dk-dl').attr('style', 'color:red;display:none')
@@ -93,7 +111,7 @@ $(document.body).on('click', '.dk-dl', function (e) {
             }
         });
 
-     
+
 
     }
 
@@ -129,7 +147,7 @@ $(document.body).on('click', '.dk-tu-van', function (e) {
             Phone: $('#Phone-tv').val(),
             Name: $('#Name-tv').val(),
             Type: 'Đăng ký tư vấn',
-            
+
         }
         $.ajax({
             dataType: 'html',
@@ -160,11 +178,11 @@ $(document.body).on('click', '.dk-tu-van', function (e) {
                 console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
             }
         });
-   
+
 
     }
 
-    
+
 });
 
 $(document.body).on('click', '.dk-sp', function (e) {
@@ -187,11 +205,11 @@ $(document.body).on('click', '.dk-sp', function (e) {
 
             "phone": {
                 required: true,
-             
+
             },
             "ShopName": {
                 required: true,
-           
+
             },
 
         },
@@ -200,14 +218,14 @@ $(document.body).on('click', '.dk-sp', function (e) {
 
             "phone": {
                 required: "Số điện thoại không được bỏ trống",
-           
+
             },
             "ShopName": {
                 required: "Tên công ty / cửa hàng không được bỏ trống",
-             
+
             },
 
-            
+
         }
     });
     if (form_validate.valid()) {
@@ -240,8 +258,8 @@ $(document.body).on('click', '.dk-sp', function (e) {
             }
         });
     }
-   
-   
+
+
 
 });
 
@@ -271,9 +289,9 @@ $(document.body).on('click', '.open-popup', function (e) {
                         img = data.data.product_sub[0].avatar
                     }
                     var html_option = '<option value="{id}">{name}</option>'
-                    var html=''
+                    var html = ''
                     for (var i = 0; i <= data.data.product_sub.length - 1; i++) {
-                        html += html_option.replaceAll('{id}', data.data.product_sub[i]._id).replaceAll('{name}', data.data.product_sub[i].variation_detail[0].name +' - '+ data.data.product_sub[i].name)
+                        html += html_option.replaceAll('{id}', data.data.product_sub[i]._id).replaceAll('{name}', data.data.product_sub[i].variation_detail[0].name + ' - ' + data.data.product_sub[i].name)
                     }
                     $("#ProductId").html(html)
                     $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
@@ -305,7 +323,7 @@ $(document.body).on('click', '.list-product-name', function (e) {
     element.addClass('active')
     var GroupProduct_Id = $('#group-product-top .active').attr('data-GroupProductId')
     group_product.bind_list_product_top_element(GroupProduct_Id, $('.list-product'))
-    
+
 });
 $(document.body).on('click', '.menu_group_product', function (e) {
 
@@ -657,7 +675,7 @@ var group_product = {
         var group_parent_id = $("#group_parent_id").val() == undefined ? -1 : parseInt($("#group_parent_id").val()); // load theo chuyen trang
         var div_location_render_data = "";
         //  alert($("#group_product_parent_id").val());
-     
+
         if (group_parent_id == -1) {
             group_parent_id = 32;   //Load danh muc trang chu
             div_location_render_data = "#group-product-left";
@@ -705,7 +723,7 @@ var group_product = {
             dataType: 'html',
             type: 'POST',
             url: '/home/loadProductTopComponent',
-            data: { group_product_id: group_id_product_top, _page_index: 0, page_size: total_product, view_name: "~/Views/Shared/Components/Product/BoxProductSale.cshtml" },
+            data: { group_product_id: group_id_product_top, _page_index: 0, page_size: 5, view_name: "~/Views/Shared/Components/Product/BoxProductSale.cshtml" },
             success: function (data) {
 
                 $('.box_product_sale').html(data);
@@ -794,50 +812,49 @@ var group_product = {
                 data = JSON.parse(data)
                 if (data.is_success == true) {
                     var html = ''
-                    for (var i = 0; i < data.data.length - 1; i++) 
-                    {
+                    for (var i = 0; i < data.data.length - 1; i++) {
                         html += html_option.replaceAll('{id}', data.data[i].provinceId).replaceAll('{name}', data.data[i].name);
 
                     }
                 }
                 $('.ProvinceId').html(html);
             }
-        
-            
+
+
         });
     },
-load_District: function () {
-    var html_option = '<option value="{id}">{name}</option>'
-    var request = {
-        id: $('#ProvinceId').val()
-    }
-    if (request.id == null) {
-        request.id = 1;
-    }
-    $.ajax({
-        dataType: 'html',
-        type: 'POST',
-        url: '/Product/loadDistrict',
-        data: { request },
-        success: function (data) {
-            data = JSON.parse(data)
-            var html = ''
-            if (data.is_success == true) {
-                if (data.data.length > 0) {
-                    for (var i = 0; i < data.data.length - 1; i++) {
-                        html += html_option.replaceAll('{id}', data.data[i].districtId).replaceAll('{name}', data.data[i].name);
-
-                    }
-                } else {
-                    html ='<option value="0"></option>'
-                }
-               
-            }
-            $('.DistrictId').html(html);
-        },
-        error: function (xhr, status, error) {
-            console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+    load_District: function () {
+        var html_option = '<option value="{id}">{name}</option>'
+        var request = {
+            id: $('#ProvinceId').val()
         }
-    });
-},
+        if (request.id == null) {
+            request.id = 1;
+        }
+        $.ajax({
+            dataType: 'html',
+            type: 'POST',
+            url: '/Product/loadDistrict',
+            data: { request },
+            success: function (data) {
+                data = JSON.parse(data)
+                var html = ''
+                if (data.is_success == true) {
+                    if (data.data.length > 0) {
+                        for (var i = 0; i < data.data.length - 1; i++) {
+                            html += html_option.replaceAll('{id}', data.data[i].districtId).replaceAll('{name}', data.data[i].name);
+
+                        }
+                    } else {
+                        html = '<option value="0"></option>'
+                    }
+
+                }
+                $('.DistrictId').html(html);
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+            }
+        });
+    },
 }
