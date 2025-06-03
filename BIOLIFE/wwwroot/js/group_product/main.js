@@ -5,7 +5,7 @@ var group_id_product_top = -1;// id nhóm sản phẩm box SẢN PHẨM NỔI B�
 var group_id_product_top_1 = 1060;// tã quần
 var group_id_product_top_2 = 1059;// tã dán
 var group_id_product_top_3 = 54;// id nhóm sản phẩm box SẢN PHẨM NỔI BẬT
-
+let total_take = 12;
 $(document).ready(function () {
 
     group_product.bind_list_group_product();
@@ -32,19 +32,21 @@ $(document).ready(function () {
 $(document.body).on('click', '.bt_xemthem', function (e) {
     var index_xemthem = parseInt($(this).attr("data-page"))+1
     
-    var page_index = (index_xemthem - 1) * total_product;
+    var page_index = 0 //(index_xemthem - 1) * total_product;
     //// Sau khi bắn link, lấy giá trị group_id
-
+   
+    total_take += total_product;
     $(this).attr("data-page", index_xemthem)
     debugger;
     var groupId = lib.getUrlParameter('group_id');
     var group_product_id = groupId == null ? -1 : parseInt(groupId);
     var view_name = "~/Views/Shared/Components/Product/ProductListViewComponent.cshtml";
-    var skip = page_index;
-    var take = total_product;
+    var skip = 0;
+    var take = total_take;
     var div_location_render_data = ".component-product-list";
     var location_type = "HOME";
     group_product.render_product_list(group_product_id, div_location_render_data, view_name, skip, take, location_type);
+
 });
 //open dl
 $(document.body).on('click', '.open-popup-dl', function (e) {
