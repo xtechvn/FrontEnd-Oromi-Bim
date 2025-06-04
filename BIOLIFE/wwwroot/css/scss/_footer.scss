@@ -59,29 +59,34 @@
         .flex-link{
             display: flex;
             gap: 20px;
-            
             justify-content: space-between;
+           
             @media (max-width:767px){
                 flex-wrap: wrap;
             }
-            .item:first-child{
-                flex-shrink: 0;
-            }
-            .item:last-child{
+          
+        }
+        .item{
+            &.cols-2{
+                justify-content: space-between;
                 display: flex;
                 flex-wrap: wrap;
+                width: 100%;
+                 column-gap: 10px;
+                max-width: 650px;
+                @media (max-width:900px){
+                   column-gap: 20px;
+                }
+                @media (max-width:767px){
+                    gap: 10px;
+                }
                 .title{
                     width: 100%;
                 }
-                ul{
-                    width: 50%;
-                      @media (max-width:767px){
-                        width: 100%;
-                        + ul{
-                            margin-top: 10px;
-                        }
-                    }
-                }
+               
+            }
+            &:first-child, &:last-child{
+                flex-shrink: 0;
             }
         }
         .social{

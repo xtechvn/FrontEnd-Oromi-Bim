@@ -26,9 +26,13 @@
             {
                 if (i == Model.CurrentPage)
                 {
-                    <li class="page active" data-page="@i">
-                        <a href="javascript:void(0)" class="action_page">@i</a>
-                    </li>
+                    if (Model.CurrentPage > 3)
+                    {
+                        <li class="page active" data-page="@i">
+                            <a href="javascript:void(0)" class="action_page">@i</a>
+                        </li>
+                    }
+
                 }
                 else
                 {

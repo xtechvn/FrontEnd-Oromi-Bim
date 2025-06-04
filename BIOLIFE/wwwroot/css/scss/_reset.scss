@@ -235,9 +235,6 @@ button,
         gap: 10px;
         justify-content: end;
 
-        @media (max-width:767px) {
-            display: none;
-        }
 
         .page {
             font-size: 16px;
