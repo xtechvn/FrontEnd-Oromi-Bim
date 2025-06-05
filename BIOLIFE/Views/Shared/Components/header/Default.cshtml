@@ -43,54 +43,74 @@
                 </nav>
             </div>
         </header>*@
- 
-    <header class="header">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="/">
-                    <div class="logo">
-                        <img class="green" src="~/images/Logo.png" alt="">
-                    </div>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="icofont-navigation-menu"></i>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            @*<a class="nav-link" href="/">Về Omori</a>*@
-                        </li>
-                        @foreach (var item in Model)
-                        {
-
-                            <li class="nav-item @Html.Raw((item.path.IndexOf(current_url) >=0 && current_url!="")  ?"active":"")">
-                                <a class="nav-link" href="@("/" + item.path.Replace("-"+ item.id,"" ) )">@item.name</a>
-                            </li>
-                        }
-                        @*<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Tã dán</a>
-                                    <a class="dropdown-item" href="#">Tã quần</a>
-                                    <a class="dropdown-item" href="#">Khăn ướt</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tin-tuc">Tin tức</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/dai-ly">Đại lý</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/lien-he">Liên hệ</a>
-                            </li>*@
-                    </ul>
-                    <a href="#popup-dathang" class="btn btn-base open-popup">Đặt hàng ngay</a>
+<header class="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="/">
+                <div class="logo">
+                    <img class="green" src="~/images/Logo.png" alt="">
                 </div>
-            </nav>
-        </div>
-    </header>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="icofont-navigation-menu"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        @*<a class="nav-link" href="/">Về Omori</a>*@
+                    </li>
+                    @foreach (var item in Model)
+                    {
+
+                        <li class="nav-item @Html.Raw((item.path.IndexOf(current_url) >=0 && current_url!="")  ?"active":"")">
+                            <a class="nav-link" href="@("/" + item.path.Replace("-"+ item.id,"" ) )">@item.name</a>
+                        </li>
+                    }
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Tã dán</a>
+                                <a class="dropdown-item" href="#">Tã quần</a>
+                                <a class="dropdown-item" href="#">Khăn ướt</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tin-tuc">Tin tức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dai-ly">Đại lý</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/lien-he">Liên hệ</a>
+                        </li>*@
+                </ul>
+                <a href="#popup-dathang" class="btn btn-base open-popup">Đặt hàng ngay</a>
+            </div>
+        </nav>
+    </div>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '541210938922618');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=541210938922618&ev=PageView&noscript=1" />
+    </noscript> <!-- End Meta Pixel Code -->
+</header>
 
     <script src="~/js/common.js"></script>
 }
