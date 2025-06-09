@@ -1,8 +1,10 @@
 ﻿using BIOLIFE.Service.Redis;
 using BIOLIFE.ViewComponents.GroupProduct;
 using BIOLIFE.ViewComponents.Header;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 
 namespace BIOLIFE
@@ -46,8 +48,17 @@ namespace BIOLIFE
                 options.Providers.Add<BrotliCompressionProvider>();
                 options.Providers.Add<GzipCompressionProvider>();
             });
-           
 
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+
+                // Tùy chọn: Thêm các IP tin cậy của Cloudflare để tăng cường bảo mật.
+                // Nếu không, middleware sẽ tin cậy bất kỳ IP nào gửi header này.
+                // options.KnownProxies.Add(IPAddress.Parse("172.16.0.0")); // Thay bằng IP của Cloudflare
+                // options.KnownNetworks.Add(new IPNetwork(IPAddress.Parse("172.16.0.0"), 20)); // Hoặc dải IP
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,9 +77,9 @@ namespace BIOLIFE
 
 
             //Addd User session  - JWT
-            
 
-            app.UseHttpsRedirection();
+            app.UseForwardedHeaders();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
