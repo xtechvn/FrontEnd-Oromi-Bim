@@ -293,7 +293,13 @@ $(document.body).on('click', '.open-popup', function (e) {
                     var html_option = '<option value="{id}">{name}</option>'
                     var html = ''
                     for (var i = 0; i <= data.data.product_sub.length - 1; i++) {
-                        html += html_option.replaceAll('{id}', data.data.product_sub[i]._id).replaceAll('{name}', data.data.product_sub[i].variation_detail[0].name + ' - ' + data.data.product_sub[i].name)
+                        if (data.data.product_sub[i].variation_detail != null) {
+                            html += html_option.replaceAll('{id}', data.data.product_sub[i]._id).replaceAll('{name}', data.data.product_sub[i].variation_detail[0].name + ' - ' + data.data.product_sub[i].name)
+
+                        } else {
+                            html += html_option.replaceAll('{id}', data.data.product_sub[i]._id).replaceAll('{name}', data.data.product_sub[i].name)
+
+                        }
                     }
                     $("#ProductId").html(html)
                     $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
