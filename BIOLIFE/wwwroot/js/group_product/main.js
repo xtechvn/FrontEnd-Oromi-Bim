@@ -268,7 +268,7 @@ $(document.body).on('click', '.dk-sp', function (e) {
 $(document.body).on('click', '.open-popup', function (e) {
     $('.select-styled').attr('style', 'display:none;')
     $('#popup-dathang').attr('style', 'display: block;')
-    $('.product_sp').html('')
+    $('.product_sp').html('<h4 class="title-sp">Tã quần OMORI Balance siêu mềm mại</h4> <div class= "price-sp"> 245.000 đ</div ><img src="images/banner-dk-sp.jpg" alt="">')
     var element = $(this)
     group_product.load_Province()
     group_product.load_District()
