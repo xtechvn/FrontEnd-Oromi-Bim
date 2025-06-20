@@ -2,22 +2,25 @@
     ViewData["Title"] = "Biolife";
 }
 <style>
-    .select-styled{
-        display:none !important;
+    .select-styled {
+        display: none !important;
     }
+
     .select-options {
         display: none !important;
     }
+
     .section-daily .flex {
         gap: 30px !important;
     }
+
     .error {
         color: red !important;
     }
 </style>
 <ul class="social-fixed">
     @*<li><a href=""><img src="images/cart.png" alt=""> </a></li>*@
-    <li><a target="https://www.facebook.com/share/195Jnd1PpB/?mibextid=wwXIfr" href="https://www.facebook.com/share/195Jnd1PpB/?mibextid=wwXIfr" ><img src="images/fb.png" alt=""></a></li>
+    <li><a target="https://www.facebook.com/share/195Jnd1PpB/?mibextid=wwXIfr" href="https://www.facebook.com/share/195Jnd1PpB/?mibextid=wwXIfr"><img src="images/fb.png" alt=""></a></li>
     <li><a target="https://Zalo.me/0853379066" href="https://Zalo.me/0853379066"><img src="images/zalo.png" alt=""></a></li>
     <li>
         <a href="tel: 085 3379 066" class="hotline">
@@ -61,7 +64,7 @@
             </div>
         </div>
     </div>
-   
+
     <div class="box-btn">
         <a href="#popup-dathang" class="btn btn-green btn-icon open-popup">
             Đặt hàng ngay
@@ -70,7 +73,8 @@
             </svg>
 
         </a>
-        <a href="#popup-dkdaily" class="btn btn-white btn-icon open-popup-dl">
+        @*<a href="#popup-dkdaily" class="btn btn-white btn-icon open-popup-dl">*@
+        <a href="#popup-dathang" class="btn btn-white btn-icon open-popup">
             Đăng kí làm đại lý
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M17.0306 12.5306L9.53055 20.0306C9.46087 20.1002 9.37815 20.1555 9.2871 20.1932C9.19606 20.2309 9.09847 20.2503 8.99993 20.2503C8.90138 20.2503 8.8038 20.2309 8.71276 20.1932C8.62171 20.1555 8.53899 20.1002 8.4693 20.0306C8.39962 19.9609 8.34435 19.8781 8.30663 19.7871C8.26892 19.6961 8.24951 19.5985 8.24951 19.4999C8.24951 19.4014 8.26892 19.3038 8.30663 19.2128C8.34435 19.1217 8.39962 19.039 8.4693 18.9693L15.4396 11.9999L8.4693 5.03055C8.32857 4.88982 8.24951 4.69895 8.24951 4.49993C8.24951 4.30091 8.32857 4.11003 8.4693 3.9693C8.61003 3.82857 8.80091 3.74951 8.99993 3.74951C9.19895 3.74951 9.38982 3.82857 9.53055 3.9693L17.0306 11.4693C17.1003 11.539 17.1556 11.6217 17.1933 11.7127C17.2311 11.8038 17.2505 11.9014 17.2505 11.9999C17.2505 12.0985 17.2311 12.1961 17.1933 12.2871C17.1556 12.3782 17.1003 12.4609 17.0306 12.5306Z" fill="#B37B54"></path>
@@ -160,7 +164,7 @@
         <div class="container">
             <h2 class="title-section">Sản phẩm nổi bật</h2>
             <div class="block-product">
-                <a href=""><img src="images/banner-sp-nb.jpg" alt=""></a>
+                <a href="/san-pham"><img src="images/banner-sp-nb.jpg" alt=""></a>
                 <!-- Swiper -->
                 <div class="position-relative">
                     <div class="product-swiper">
@@ -198,7 +202,7 @@
         <div class="container">
             <h2 class="title-section">Khăn khô/ Khăn ướt</h2>
             <div class="block-product">
-                <a href=""><img src="images/banner-sp-khan-kho.jpg" alt=""></a>
+                <a href="/san-pham"><img src="images/banner-sp-khan-kho.jpg" alt=""></a>
                 <!-- Swiper -->
                 <div class="position-relative">
                     <div class="product-swiper">
@@ -235,7 +239,7 @@
         <div class="container">
             <h2 class="title-section">Tã/ bỉm dán</h2>
             <div class="block-product">
-                <a href=""><img src="images/banner-sp-ta-dan.jpg" alt=""></a>
+                <a href="/san-pham"><img src="images/banner-sp-ta-dan.jpg" alt=""></a>
                 <!-- Swiper -->
                 <div class="position-relative">
                     <div class="product-swiper">
@@ -272,7 +276,7 @@
         <div class="container">
             <h2 class="title-section">Tã/Bỉm quần</h2>
             <div class="block-product">
-                <a href=""><img src="images/banner-sp-bim-quyan.jpg" alt=""></a>
+                <a href="/san-pham"><img src="images/banner-sp-bim-quyan.jpg" alt=""></a>
                 <!-- Swiper -->
                 <div class="position-relative">
                     <div class="product-swiper">
@@ -315,7 +319,7 @@
             <h2 class="title-section">Có thể bạn chưa biết</h2>
         </div>
         <div class="grid grid-3" id="list-new-latest">
-            
+
         </div>
     </div>
 </section>
@@ -400,7 +404,7 @@
                         </div>
                         <div class="form-group">
                             <label>Lời nhắn</label>
-                            <textarea class="form-control"id="Note-tv" rows="3"></textarea>
+                            <textarea class="form-control" id="Note-tv" rows="3"></textarea>
                         </div>
                         <div class="action text-center">
                             <a href="javascript:void(0)" class="btn btn-base dk-tu-van" style="min-width: 170px;">
@@ -428,7 +432,7 @@
             </span>
             <div class="section-contact">
                 <div class="block-contact">
-                    <h2 class="title-section text-center">Đăng kí mua sản phẩm</h2>
+                    <h2 class="title-section text-center"> Đăng kí làm đại lý</h2>
 
                     <h5 class="title-section text-center ss-dk" style="color:red;display:none">Đăng kí sản phẩm thành công</h5>
 
@@ -467,9 +471,14 @@
 
 
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="display:none;">
                                     <label>Số lượng</label>
                                     <input id="Quantity" name="Quantity" class="form-control" type="number">
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Email <span style="color:red">*</span></label>
+                                    <input id="Email" name="Email" class="form-control">
 
                                 </div>
                                 <div class="form-group">

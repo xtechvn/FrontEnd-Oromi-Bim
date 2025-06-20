@@ -171,6 +171,7 @@ namespace BIOLIFE.Controllers.Product
                 model.phone = request.Phone;
                 model.receivername = request.FullName;
                 model.note = request.Note;
+                model.email = request.Email;
                 var data_result = await productsService.SeverOrder(model);
                 if(data_result == 0)
                 return Ok(new

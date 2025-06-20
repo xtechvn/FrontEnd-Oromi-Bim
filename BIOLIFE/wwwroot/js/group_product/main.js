@@ -199,6 +199,7 @@ $(document.body).on('click', '.dk-sp', function (e) {
         Phone: $('#phone').val(),
         Name: $('#name').val(),
         Quantity: $('#Quantity').val(),
+        Email: $('#Email').val(),
     }
     form_validate.validate({
         rules: {
@@ -213,6 +214,10 @@ $(document.body).on('click', '.dk-sp', function (e) {
                 required: true,
 
             },
+            "Email": {
+                required: true,
+                email: true,
+            },
 
         },
         messages: {
@@ -225,6 +230,10 @@ $(document.body).on('click', '.dk-sp', function (e) {
             "ShopName": {
                 required: "Tên công ty / cửa hàng không được bỏ trống",
 
+            },
+            "Email": {
+                required: "Email không được bỏ trống",
+                email: "Nhập đúng định dạnh email",
             },
 
 
@@ -266,6 +275,7 @@ $(document.body).on('click', '.dk-sp', function (e) {
 });
 
 $(document.body).on('click', '.open-popup', function (e) {
+    group_product.resetFrom();
     $('.select-styled').attr('style', 'display:none;')
     $('#popup-dathang').attr('style', 'display: block;')
     $('.product_sp').html('<h4 class="title-sp">Tã quần OMORI Balance siêu mềm mại</h4> <div class= "price-sp"> 245.000 đ</div ><img src="images/banner-dk-sp.jpg" alt="">')
@@ -864,5 +874,12 @@ var group_product = {
                 console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
             }
         });
+    },
+    resetFrom: function () {
+        $('#name').val('')
+        $('#phone').val('')
+        $('#Email').val('')
+        $('#note').val('')
+        $('.ss-dk').attr('style', 'color:red;display:none')
     },
 }

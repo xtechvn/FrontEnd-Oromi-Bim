@@ -11,6 +11,7 @@
         public string phone { get; set; }
         public string receivername { get; set; }
         public string note { get; set; }
+        public string email { get; set; }
     
 
     }
