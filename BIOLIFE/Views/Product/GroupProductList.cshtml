@@ -50,7 +50,7 @@
             </span>
             <div class="section-contact">
                 <div class="block-contact">
-                    <h2 class="title-section text-center">Đăng kí mua sản phẩm</h2>
+                    <h2 class="title-section text-center"> Đăng kí làm đại lý</h2>
 
                     <h5 class="title-section text-center ss-dk" style="color:red;display:none">Đăng kí sản phẩm thành công</h5>
 
@@ -60,21 +60,15 @@
 
                                 <div class="grid-2">
                                     <div class="form-group form-group-2">
-                                        <label>Họ tên</label>
+                                        <label>Họ tên / Tên công ty <span style="color:red">*</span></label>
                                         <input id="name" name="name" class="form-control" type="text">
                                         <label class="err-name" style="color:red;display:none">không được bỏ trống</label>
                                     </div>
                                     <div class="form-group form-group-2">
-                                        <label>Số điện thoại</label>
+                                        <label>Số điện thoại <span style="color:red">*</span></label>
                                         <input id="phone" name="phone" class="form-control" type="tel">
                                         <label class="err-phone" style="color:red;display:none">không được bỏ trống</label>
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Tên công ty / cửa hàng</label>
-                                    <input id="ShopName" name="ShopName" class="form-control" type="text">
-                                    <label class="err-ShopName" style="color:red;display:none">không được bỏ trống</label>
                                 </div>
                                 <div class="grid-2">
                                     <div class="form-group form-group-2">
@@ -92,10 +86,17 @@
                                     <label>Sản phẩm</label>
                                     <select class="form-control" id="ProductId">
                                     </select>
-                                    @* <div class="mt-2">
-                                            <p>Nơi sản xuất: Mỹ</p>
-                                            <p>Số lượng: 42 miếng</p>
-                                        </div> *@
+
+
+                                </div>
+                                <div class="form-group" style="display:none;">
+                                    <label>Số lượng</label>
+                                    <input id="Quantity" name="Quantity" class="form-control" type="number">
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Email <span style="color:red">*</span></label>
+                                    <input id="Email" name="Email" class="form-control">
 
                                 </div>
                                 <div class="form-group">
