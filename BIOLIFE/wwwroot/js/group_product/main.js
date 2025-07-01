@@ -60,6 +60,7 @@ $(document.body).on('click', '.dk-dl', function (e) {
         rules: {
 
             "Name-dl": "required",
+            "Email-dl": "required",
 
             "Phone-dl": {
                 required: true,
@@ -68,6 +69,7 @@ $(document.body).on('click', '.dk-dl', function (e) {
         },
         messages: {
             "Name-dl": "Họ tên / Tên công ty  không được bỏ trống",
+            "Email-dl": "Email không được bỏ trống",
 
             "Phone-dl": {
                 required: "Số điện thoại không được bỏ trống",
@@ -80,6 +82,7 @@ $(document.body).on('click', '.dk-dl', function (e) {
             Note: $('#Note-dl').val(),
             Phone: $('#Phone-dl').val(),
             Name: $('#Name-dl').val(),
+            Email: $('#Email-dl').val(),
             Type: 'Đăng ký đại lý',
 
         }
