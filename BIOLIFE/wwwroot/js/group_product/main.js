@@ -276,7 +276,47 @@ $(document.body).on('click', '.dk-sp', function (e) {
 
 
 });
+$(document.body).on('onchange', '#ProductId', function (e) {
+    var request = {
+        id: $('#ProductId').val()
+    }
+    $.ajax({
+        dataType: 'html',
+        type: 'POST',
+        url: '/Product/GetProductDetail',
+        data: { request },
+        success: function (data) {
+            data = JSON.parse(data)
+            if (data.is_success == true) {
+                if (data.data.product_sub != null && data.data.product_sub.length > 0) {
+                    var img = '';
+                    if (data.data.product_sub[0].avatar.indexOf("https://static-image.adavigo.com/") == -1) {
+                        img = "https://static-image.adavigo.com/" + data.data.product_sub[0].avatar
+                    } else {
+                        img = data.data.product_sub[0].avatar
+                    }
+                    $('.product_sp').html('<h4 class="title-sp">' + data.data.product_sub[0].name + '</h4>' +
+                        '<div class= "price-sp" > ' + group_product.Comma(data.data.product_sub[0].amount) + ' đ</div >' +
+                        ' <img src="' + img + '" alt="">')
+                } else {
+                    var img = '';
+                    if (data.data.product_main.avatar.indexOf("https://static-image.adavigo.com/") == -1) {
+                        img = "https://static-image.adavigo.com/" + data.data.product_main.avatar
+                    } else {
+                        img = data.data.product_main.avatar
+                    }
+                    $('.product_sp').html('<h4 class="title-sp">' + data.data.product_main.name + '</h4>' +
+                        '<div class= "price-sp" > ' + group_product.Comma(data.data.product_main.amount) + ' đ</div >' +
+                        ' <img src="' + img + '" alt="">')
+                }
 
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log("Error: " + error); // Thay đổi từ 'failure' sang 'error'
+        }
+    });
+});
 $(document.body).on('click', '.open-popup', function (e) {
     group_product.resetFrom();
     $('.select-styled').attr('style', 'display:none;')
