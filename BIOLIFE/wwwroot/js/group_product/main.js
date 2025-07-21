@@ -276,7 +276,7 @@ $(document.body).on('click', '.dk-sp', function (e) {
 
 
 });
-$(document.body).on('onchange', '#ProductId', function (e) {
+$(document.body).on('change', '#ProductId', function (e) {
     var request = {
         id: $('#ProductId').val()
     }
