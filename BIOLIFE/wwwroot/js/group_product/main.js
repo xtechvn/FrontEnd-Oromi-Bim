@@ -16,6 +16,7 @@ $(document).ready(function () {
     group_product.bind_list_menu_product(); // danh mục sản phẩm trang chủ bên trái /Home
     group_product.bind_list_product_bottom_top();
     group_product.bind_list_new_latest();
+    group_product.bind_list_group_product_Detail();
 
 
     // Page load render data by group product id
@@ -25,7 +26,7 @@ $(document).ready(function () {
     var div_location_render_data = ".component-product-list";
     var location_type = "CATEGORY";
     group_product.render_product_list(-1, div_location_render_data, view_name, skip, take, location_type);
-
+    group_product.render_product_list(-1, ".component-product-list-detail", "~/Views/Shared/Components/Product/ProductListDetailViewComponent.cshtml", skip, 8, location_type);
     group_product.bind_list_product_flashSale();
 })
 
@@ -924,5 +925,9 @@ var group_product = {
         $('#Email').val('')
         $('#note').val('')
         $('.ss-dk').attr('style', 'color:red;display:none')
+    },
+    bind_list_group_product_Detail: function () { // bind box nhóm menu sản phẩm vị trí top
+
+        
     },
 }

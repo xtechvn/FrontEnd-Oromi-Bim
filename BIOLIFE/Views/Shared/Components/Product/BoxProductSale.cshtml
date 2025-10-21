@@ -12,7 +12,7 @@
         {
             string link = @Html.GetStaticUrlProduct(item.name, item._id);
             <div class="item-product">
-                <a href="">
+                <a href="@link">
                     <div class="box-thumb">
                         <div class="thumb-product">
                             <img src="@Html.GetStaticUrlImage( item.avatar,Configuration)" alt="@item.name" />

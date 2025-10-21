@@ -5,17 +5,24 @@
 
     string static_domain = "https://static-image.adavigo.com";
 
-    var specification_list = new List<ProductSpecificationTypeModel>()
-    {
-      new ProductSpecificationTypeModel() { _id= 1, name= "Thương hiệu", type= 3 },
-       new ProductSpecificationTypeModel(){ _id= 5, name= "Chất liệu", type= 3 },
-       new ProductSpecificationTypeModel(){ _id= 2, name= "Độ tuổi khuyến nghị", type= 3 },
-       new ProductSpecificationTypeModel(){ _id= 6, name= "Ngày sản xuất", type= 2 },
-       new ProductSpecificationTypeModel(){ _id= 3, name= "Tên tổ chức chịu trách nhiệm sản xuất", type= 3 },
-       new ProductSpecificationTypeModel(){ _id= 7, name= "Địa chỉ tổ chức chịu trách nghiệm sản xuất", type= 3 },
-       new ProductSpecificationTypeModel(){ _id= 4, name= "Sản phẩm đặt theo yêu cầu", type= 3 },
-    };
+    //    var specification_list = new List<ProductSpecificationTypeModel>()
+    //{
+    //      new ProductSpecificationTypeModel() { _id= 1, name= "Thương hiệu", type= 3 },
+    //       new ProductSpecificationTypeModel(){ _id= 5, name= "Chất liệu", type= 3 },
+    //       new ProductSpecificationTypeModel(){ _id= 2, name= "Độ tuổi khuyến nghị", type= 3 },
+    //       new ProductSpecificationTypeModel(){ _id= 6, name= "Ngày sản xuất", type= 2 },
+    //       new ProductSpecificationTypeModel(){ _id= 3, name= "Tên tổ chức chịu trách nhiệm sản xuất", type= 3 },
+    //       new ProductSpecificationTypeModel(){ _id= 7, name= "Địa chỉ tổ chức chịu trách nghiệm sản xuất", type= 3 },
+    //       new ProductSpecificationTypeModel(){ _id= 4, name= "Sản phẩm đặt theo yêu cầu", type= 3 },
+    //    };
 }
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/icofont/icofont.min.css" />
+    <link rel="stylesheet" href="/css/main.css">
+</head>
 @if (Model != null && Model.product_main != null)
 {
     @using System.Text.Json
@@ -28,6 +35,9 @@
            product_name = @Model.product_main.name.Replace("\"", "").Replace("'", ""),
            link = Html.GetStaticUrlProduct(Model.product_main.name, Model.product_main._id)
        })' />
+
+
+
 
     <section class="section-details-product" data-code="@Model.product_main._id">
         <div class="container">
@@ -76,96 +86,168 @@
                         <div class="swiper-button-next"></div>
                     </div>
                 </div>
-                <div class="info-product">
-                    <div class="box-name-product">
-                        <h1 class="name-product">@Model.product_main.name </h1>
-                    </div>
 
-                    <div class="box-price">
-                        @if (Model.product_sub == null || Model.product_sub.Count <= 0)
-                        {
-                            <span class="price">@Model.product_main.amount.ToString("N0")</span>
-                        }
-                        else
-                        {
-                            @if (Model.product_main.amount_min == null) Model.product_main.amount_min = 0;
-                            @if (Model.product_main.amount_max == null) Model.product_main.amount_max = 0;
-                            <span class="price">@(((double)Model.product_main.amount_min).ToString("N0")) đ - @(((double)Model.product_main.amount_max).ToString("N0")) đ</span>
-                        }
-                    </div>
 
-                    <div class="box-info-details">
-                        <table class="attribute-table">
-                            <tbody>
-                                @if (Model.product_main.attributes != null && Model.product_main.attributes.Count > 0)
-                                {
-                                    foreach (var attribute_info in Model.product_main.attributes)
-                                    {
-                                        @if (Model.product_main.attributes_detail != null && Model.product_main.attributes_detail.Count > 0)
-                                        {
-                                            var attribute_detail_by_id = Model.product_main.attributes_detail.Where(x => x.attribute_id == attribute_info._id);
-                                            if (attribute_detail_by_id != null && attribute_detail_by_id.Count() > 0)
-                                            {
-                                                <tr class="attributes" data-level="@attribute_info._id">
-                                                    <td>@attribute_info.name</td>
-                                                    <td>
-                                                        <ul class="box-tag">
-                                                            @foreach (var attr_detail in attribute_detail_by_id)
-                                                            {
-                                                                <li class="attribute-detail" data-id="@attr_detail.name"><img style="@(attr_detail.img!=null && attr_detail.img.Trim()!=""?"":" display:none;")" src="@attr_detail.img" />@attr_detail.name</li>
-                                                            }
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                            }
 
-                                        }
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                        <h4 class="tt-info">Thông tin sản phẩm</h4>
-                        <table id="tb-info-table" class="tb-info">
-                            <tbody>
-                                @if (Model.product_main.specification != null && Model.product_main.specification.Count > 0)
-                                {
-                                    var specs = Model.product_main.specification.Where(x => x.value != null);
-                                    foreach (var spec in specs)
-                                    {
-                                        var spec_selected = specification_list.FirstOrDefault(x => x._id == spec.attribute_id);
-                                        if (spec_selected != null && spec_selected._id > 0 && spec.value != null && spec.value.Trim() != "" && spec.value.Trim() != "null")
-                                        {
-                                            <tr>
-                                                <td>@spec_selected.name</td>
-                                                <td>@spec.value</td>
-                                            </tr>
-                                        }
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            @{
-                if (Model.product_main.description != null)
-                {
-                    <div class="box-description">
-                        <h3 class="title">Chi tiết sản phẩm</h3>
-                        <div class="content">
-                            @Html.Raw(Model.product_main.description.Replace("\n", " <br />"));
+                <div class="product-card">
+                    <h1 class="product-title">@Model.product_main.name</h1>
+
+                    <div class="product-top">
+                        <div class="product-price">
+                            @if (Model.product_sub == null || Model.product_sub.Count <= 0)
+                            {
+                                <span class="price">@Model.product_main.amount.ToString("N0") đ</span>
+                            }
+                            else
+                            {
+                                @if (Model.product_main.amount_min == null) Model.product_main.amount_min = 0;
+                                @if (Model.product_main.amount_max == null) Model.product_main.amount_max = 0;
+                                <span class="price">@(((double)Model.product_main.amount_min).ToString("N0")) đ - @(((double)Model.product_main.amount_max).ToString("N0")) đ</span>
+                            }
+                        </div>
+
+                        <div class="product-variants">
+                            <div class="variants-label">Phân loại:</div>
+                            <div class="size-list" role="tablist" aria-label="Chọn size">
+                                <button class="size-btn active" data-size="M" data-count="42">M <span class="count">42Pcs</span></button>
+                                <button class="size-btn" data-size="L" data-count="40">L <span class="count">40Pcs</span></button>
+                                <button class="size-btn" data-size="XL" data-count="38">XL <span class="count">38Pcs</span></button>
+                                <button class="size-btn" data-size="XXL" data-count="36">XXL <span class="count">36Pcs</span></button>
+                                <button class="size-btn" data-size="XXXL" data-count="34">XXXL <span class="count">34Pcs</span></button>
+                            </div>
+
+                            <a class="btn-shop" href="#" target="_blank" rel="noopener">Mua sắm trên Shopee</a>
                         </div>
                     </div>
-                }
-            }
 
+                    <hr class="divider">
+
+                    <!-- ACCORDION SECTION -->
+                    <div class="product-info">
+                        <div class="accordion">
+
+                            <div class="accordion-item active">
+                                <button class="accordion-header" aria-expanded="true">
+                                    <span>Mô tả</span>
+                                    <span class="chev" aria-hidden="true"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <p>
+                                        Omori mang đến giải pháp bỉm trẻ em hội tụ đầy đủ các yếu tố: Công nghệ Nhật Bản –
+                                        Tiêu chuẩn Nhật Bản – Thiết kế tối ưu cho trẻ em Việt.
+                                    </p>
+                                    <p>
+                                        Trong bối cảnh cha mẹ ngày càng đề cao chất lượng và sự an toàn cho trẻ nhỏ, bỉm
+                                        Omori nổi bật như một lựa chọn đáng tin cậy, chinh phục niềm tin người tiêu dùng.
+                                    </p>
+                                    <p>
+                                        Nhờ vào những ưu điểm vượt trội cùng chính sách giá cạnh tranh, Omori mang đến cơ hội
+                                        đầu tư hấp dẫn và bền vững cho các đối tác kinh doanh.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header" aria-expanded="false">
+                                    <span>Đặc điểm nổi bật</span>
+                                    <span class="chev" aria-hidden="true"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <ul>
+                                        <li>Chất liệu mềm mại, thoáng khí, an toàn cho da bé.</li>
+                                        <li>Khả năng thấm hút nhanh, chống tràn hiệu quả.</li>
+                                        <li>Thiết kế ôm vừa vặn, giúp bé thoải mái vận động.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header" aria-expanded="false">
+                                    <span>Hướng dẫn mẹ chọn size phù hợp cho bé</span>
+                                    <span class="chev" aria-hidden="true"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <p>M: 6–11kg | L: 9–14kg | XL: 12–17kg | XXL: 15–25kg | XXXL: &gt;25kg</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="box-video">
+                <h3 class="title">Bạn cũng có thể thích</h3>
+                <img src="~/images/banner-home.jpg" alt="">
+            </div>
+            <h3 class="title">Bạn cũng có thể thích</h3>
+            <div class="product-category component-product-list-detail">
+                <div class="list-product-detail">
+
+                </div>
+            </div>
+
+            <div class="wrap-paging">
+                <a href="/san-pham" class="xemthem">Xem thêm</a>
+            </div>
         </div>
     </section>
 }
+<script src="~/js/swiper-bundle.min.js"></script>
 
 @section Scripts {
     <script src="~/js/product/constants.js"></script>
     <script src="~/js/product/global.js"></script>
     <script src="~/js/product/product_detail.js"></script>
+    <script>
+        // gallery
+        var swiperSmallThumb = new Swiper(".thumb-small", {
+            spaceBetween: 15,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+            navigation: {
+                nextEl: '.thumb-small .swiper-button-next',
+                prevEl: '.thumb-small .swiper-button-prev',
+            },
+        });
+        var swiperBigThumb = new Swiper(".thumb-big", {
+            spaceBetween: 15,
+            navigation: false,
+            thumbs: {
+                swiper: swiperSmallThumb,
+            },
+        });
+        $(function () {
+            $('.size-list').on('click', '.size-btn', function (e) {
+                e.preventDefault();
+                var $btn = $(this);
+                // nếu muốn multi-select, bỏ dòng sau
+                $btn.closest('.size-list').find('.size-btn').removeClass('active');
+                $btn.addClass('active');
 
+            });
+
+            $('.accordion').on('click', '.accordion-header', function (e) {
+                e.preventDefault();
+                var $header = $(this);
+                var $item = $header.closest('.accordion-item');
+                var $acc = $header.closest('.accordion');
+
+                if ($item.hasClass('active')) {
+                    $item.removeClass('active').find('.accordion-content').stop(true, true).slideUp(220);
+                    $header.attr('aria-expanded', 'false');
+                    return;
+                }
+
+                $acc.find('.accordion-item.active').removeClass('active')
+                    .find('.accordion-content').stop(true, true).slideUp(200)
+                    .closest('.accordion-item').find('.accordion-header').attr('aria-expanded', 'false');
+
+                $item.addClass('active').find('.accordion-content').stop(true, true).slideDown(240);
+                $header.attr('aria-expanded', 'true');
+            });
+        });
+
+    </script>
 }

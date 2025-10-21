@@ -75,7 +75,7 @@ var product_detail = {
         if (code == undefined || code.trim() == '') {
             window.location.href = '/error'
         }
-        if ($('.section-details-product') == undefined || $('.section-details-product').length<=0|| ('.section-details-product').attr('data-code') == undefined || $('.section-details-product').attr('data-code').trim() == '') {
+        if ($('.section-details-product') == undefined || $('.section-details-product').length<=0|| $('.section-details-product').attr('data-code') == undefined || $('.section-details-product').attr('data-code').trim() == '') {
             window.location.reload()
         }
         var request = {

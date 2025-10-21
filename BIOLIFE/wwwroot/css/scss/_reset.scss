@@ -12,7 +12,7 @@
 
 body,
 html {
-    background: #F8F2EE;;
+    background: #F1F5F9;
     color: #553A26;
     padding: 0;
     line-height: 1.4;
@@ -823,7 +823,10 @@ button,
         text-decoration: line-through;
         color: #94a3b8; /* slate-400 */
     }
-
+  .btn{
+        display: inline-block;
+        margin-top: 10px;
+    }
 }
 
 

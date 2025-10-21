@@ -10,7 +10,7 @@
         string link = @Html.GetStaticUrlProduct(item.name, item._id);
         <div class="swiper-slide pt-3">
             <div class="item-product">
-                <a  href="#popup-dathang" class="open-popup" data-id="@item._id">
+                <a  href="@link"  data-id="@item._id">
                     @*<div class="tag">-50%</div>*@
                     <div class="product-image">
                         <div class="thumb-product">
