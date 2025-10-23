@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9;
+    z-index: 99;
     padding: 16px 0;
     transition: all 0.3s ease-in;
     border-bottom: 1px solid #EBD8CA;
@@ -115,7 +115,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 2;
+        z-index: 99;
         transition: all 0.3s ease-in;
         background: transparent;
         border: 0;
