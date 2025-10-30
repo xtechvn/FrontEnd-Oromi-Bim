@@ -16,8 +16,8 @@
         {
             if (item.group_product_child != null && item.group_product_child.Count > 0)
             {
-                <div class="omori-item list-product-name active" data-GroupProductId="@item.group_product_child[0].id">
-                        <a href="javascripts:;">
+                <div class="omori-item list-product-name active" data-GroupProductId="@item.group_product_child[0].parentid">
+                    <a href="san-pham?group_id=@item.group_product_child[0].parentid">
                         <img src="@link@item.imagepath" alt="OMORI Luxury">
                         <p>@item.name</p>
                     </a>
@@ -27,7 +27,7 @@
             else
             {
                     <div class="omori-item list-product-name active" data-GroupProductId="@item.id">
-                        <a href="javascripts:;">
+                    <a href="san-pham?group_id=@item.id">
                         <img src="@link@item.imagepath" alt="OMORI Luxury">
                             <p>@item.name</p>
                         </a>
@@ -40,8 +40,8 @@
         {
             if (item.group_product_child != null && item.group_product_child.Count > 0)
             {
-                    <div class="omori-item list-product-name" data-GroupProductId="@item.group_product_child[0].id">
-                    <a href="javascripts:;">
+                <div class="omori-item list-product-name" data-GroupProductId="@item.group_product_child[0].parentid">
+                    <a href="san-pham?group_id=@item.group_product_child[0].parentid">
                         <img src="@link@item.imagepath" alt="OMORI Luxury">
                             <p>@item.name</p>
                         </a>
@@ -50,7 +50,7 @@
             else
             {
                     <div class="omori-item list-product-name" data-GroupProductId="@item.id">
-                    <a href="javascripts:;">
+                    <a href="san-pham?group_id=@item.id">
                         <img src="@link@item.imagepath" alt="OMORI Luxury">
                             <p>@item.name</p>
                         </a>
