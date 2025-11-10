@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BIOLIFE.Controllers.Home.Service;
+using BIOLIFE.Service.Redis;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BIOLIFE.Controllers.Home
 {
@@ -7,15 +9,24 @@ namespace BIOLIFE.Controllers.Home
         private readonly ILogger<HomeController> _logger;
         private readonly IServiceProvider _serviceProvider;
         private readonly IConfiguration configuration;
-        public HomeController(ILogger<HomeController> logger, IServiceProvider serviceProvider, IConfiguration _Configuration)
+        private readonly RedisConn _redisService;
+        public HomeController(ILogger<HomeController> logger, IServiceProvider serviceProvider, IConfiguration _Configuration, RedisConn redisService)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
             configuration = _Configuration;
+            _redisService = redisService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var objMenu = new MenuService(configuration, _redisService);
+            var BannerMain = await objMenu.GetBannerMain();
+            var BannerSub = await objMenu.GetBannerSub();
+            var BannerSupplier = await objMenu.GetBannerSupplier();
+            ViewBag.BannerMain = BannerMain;
+            ViewBag.BannerSub = BannerSub;
+            ViewBag.BannerSupplier = BannerSupplier;
             return View();
         }
         [Route("san-pham")]

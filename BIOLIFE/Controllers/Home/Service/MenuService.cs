@@ -55,7 +55,102 @@ namespace BIOLIFE.Controllers.Home.Service
             }
         }
 
-        
+        public async Task<List<AllCode>?> GetBannerMain()
+        {
+            try
+            {
+                var connect_api_us = new ConnectApi(configuration, redisService);
+                var input_request = new Dictionary<string, string>
+                {
+                    {"parent_id","0" }
+                };
+                var response_api = await connect_api_us.CreateHttpRequest("/api/Home/banner", input_request);
+
+                // Nhan ket qua tra ve                            
+                var JsonParent = JArray.Parse("[" + response_api + "]");
+                int status = Convert.ToInt32(JsonParent[0]["status"]);
+
+                if (status == ((int)ResponseType.SUCCESS))
+                {
+                    string data = JsonParent[0]["main_slide"].ToString();
+                    return JsonConvert.DeserializeObject<List<AllCode>>(data);
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogHelper.InsertLogTelegramByUrl(configuration["telegram_log_error_fe:Token"], configuration["telegram_log_error_fe:GroupId"], "getListMenuHelp " + ex.Message);
+                return null;
+            }
+        }
+        public async Task<List<AllCode>?> GetBannerSub()
+        {
+            try
+            {
+                var connect_api_us = new ConnectApi(configuration, redisService);
+                var input_request = new Dictionary<string, string>
+                {
+                    {"parent_id","0" }
+                };
+                var response_api = await connect_api_us.CreateHttpRequest("/api/Home/banner", input_request);
+
+                // Nhan ket qua tra ve                            
+                var JsonParent = JArray.Parse("[" + response_api + "]");
+                int status = Convert.ToInt32(JsonParent[0]["status"]);
+
+                if (status == ((int)ResponseType.SUCCESS))
+                {
+                    string data = JsonParent[0]["sub_banner"].ToString();
+                    return JsonConvert.DeserializeObject<List<AllCode>>(data);
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogHelper.InsertLogTelegramByUrl(configuration["telegram_log_error_fe:Token"], configuration["telegram_log_error_fe:GroupId"], "getListMenuHelp " + ex.Message);
+                return null;
+            }
+        }
+        public async Task<List<AllCode>?> GetBannerSupplier()
+        {
+            try
+            {
+                var connect_api_us = new ConnectApi(configuration, redisService);
+                var input_request = new Dictionary<string, string>
+                {
+                    {"parent_id","0" }
+                };
+                var response_api = await connect_api_us.CreateHttpRequest("/api/Home/banner", input_request);
+
+                // Nhan ket qua tra ve                            
+                var JsonParent = JArray.Parse("[" + response_api + "]");
+                int status = Convert.ToInt32(JsonParent[0]["status"]);
+
+                if (status == ((int)ResponseType.SUCCESS))
+                {
+                    string data = JsonParent[0]["trending_main"].ToString();
+                    return JsonConvert.DeserializeObject<List<AllCode>>(data);
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogHelper.InsertLogTelegramByUrl(configuration["telegram_log_error_fe:Token"], configuration["telegram_log_error_fe:GroupId"], "getListMenuHelp " + ex.Message);
+                return null;
+            }
+        }
 
     }
 }

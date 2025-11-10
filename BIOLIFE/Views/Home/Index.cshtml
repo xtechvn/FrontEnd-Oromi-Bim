@@ -1,5 +1,9 @@
-﻿@{
+﻿@using BIOLIFE.Models;
+@{
     ViewData["Title"] = "Biolife";
+    var BannerMain = (List<AllCode>)ViewBag.BannerMain;
+    var BannerSub = (List<AllCode>)ViewBag.BannerSub;
+    var BannerSupplier = (List<AllCode>)ViewBag.BannerSupplier;
 }
 <style>
     .select-styled {
@@ -37,15 +41,21 @@
     <div class="banner-swiper">
         <div class="swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="/images/banner-home.png" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/images/banner-home2.jpg" alt="" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="/images/banner-home3.jpg" alt="" />
-                </div>
+                @if (BannerMain != null && BannerMain.Count > 0)
+                {
+                    foreach (var item in BannerMain)
+                    {
+                        <div class="swiper-slide">
+                            <img src="@item.Description" alt="" />
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="swiper-slide">
+                        <img src="/images/banner-home.png" alt="" />
+                    </div>
+                })
             </div>
             <!-- Navigation -->
             <div class="swiper-button-next">
@@ -149,24 +159,27 @@
 
         <div class="swiper milk-swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="slide-inner">
-                        <img src="images/banner-home.jpg" alt="Sữa thoải mái của bé">
-                        <a href="/https://shopee.vn/omori.store" class="btn btn-base">Mua ngay</a>
+                @if (BannerSub != null && BannerSub.Count > 0)
+                {
+                    foreach (var item in BannerSub)
+                    {
+                        <div class="swiper-slide">
+                            <div class="slide-inner">
+                                <img src="@item.Description" alt="Sữa thoải mái của bé">
+                                <a href="/https://shopee.vn/omori.store" class="btn btn-base">Mua ngay</a>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="swiper-slide">
+                        <div class="slide-inner">
+                            <img src="images/banner-home.jpg" alt="Sữa thoải mái của bé">
+                            <a href="/https://shopee.vn/omori.store" class="btn btn-base">Mua ngay</a>
+                        </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-inner">
-                        <img src="images/banner-home.jpg" alt="Sản phẩm chất lượng">
-                        <a href="https://shopee.vn/omori.store" class="btn btn-base">Mua ngay</a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-inner">
-                        <img src="/images/banner-home.jpg" alt="Lựa chọn của mẹ">
-                        <a href="https://shopee.vn/omori.store" class="btn btn-base">Mua ngay</a>
-                    </div>
-                </div>
+                })
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -189,28 +202,22 @@
         <div class="box-slide">
             <div class="swiper awardsSwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
                 <div class="swiper-wrapper" id="swiper-wrapper-d2ddc27b3a24e10c" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-186.667px, 0px, 0px); transition-delay: 0ms;">
-                    <div class="swiper-slide">
-                        <img src="/images/logo1.png" alt="Award 1" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/images/logo2.png" alt="Award 2" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/images/award.png" alt="Award 3" />
-                    </div>
-
-                    <div class="swiper-slide">
-                        <img src="/images/logo4.png" alt="Award 4" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/images/logo5.png" alt="Award 5" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/images/logo6.png" alt="Award 6" />
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/images/logo1.png" alt="Award 7" />
-                    </div>
+                    @if (BannerSub != null && BannerSub.Count > 0)
+                    {
+                        foreach (var item in BannerSub)
+                        {
+                            <div class="swiper-slide">
+                                <img src="@item.Description" alt="Award @item.OrderNo" />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="swiper-slide">
+                            <img src="/images/logo1.png" alt="Award 1" />
+                        </div>
+                    })
+                  
                 </div>
 
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
