@@ -1,6 +1,7 @@
 ﻿@using BIOLIFE.Models;
 @{
     ViewData["Title"] = "Biolife";
+    var Static = ViewBag.Static;
     var BannerMain = (List<AllCode>)ViewBag.BannerMain;
     var BannerSub = (List<AllCode>)ViewBag.BannerSub;
     var BannerSupplier = (List<AllCode>)ViewBag.BannerSupplier;
@@ -46,7 +47,7 @@
                     foreach (var item in BannerMain)
                     {
                         <div class="swiper-slide">
-                            <img src="@item.Description" alt="" />
+                            <img src="@Static@item.Description" alt="" />
                         </div>
                     }
                 }
@@ -165,7 +166,7 @@
                     {
                         <div class="swiper-slide">
                             <div class="slide-inner">
-                                <img src="@item.Description" alt="Sữa thoải mái của bé">
+                                        <img src="@Static@item.Description" alt="Sữa thoải mái của bé">
                                 <a href="/https://shopee.vn/omori.store" class="btn btn-base">Mua ngay</a>
                             </div>
                         </div>
@@ -202,12 +203,12 @@
         <div class="box-slide">
             <div class="swiper awardsSwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
                 <div class="swiper-wrapper" id="swiper-wrapper-d2ddc27b3a24e10c" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-186.667px, 0px, 0px); transition-delay: 0ms;">
-                    @if (BannerSub != null && BannerSub.Count > 0)
+                    @if (BannerSupplier != null && BannerSupplier.Count > 0)
                     {
-                        foreach (var item in BannerSub)
+                        foreach (var item in BannerSupplier)
                         {
                             <div class="swiper-slide">
-                                <img src="@item.Description" alt="Award @item.OrderNo" />
+                                        <img src="@Static@item.Description" alt="Award @item.OrderNo" />
                             </div>
                         }
                     }
@@ -216,7 +217,7 @@
                         <div class="swiper-slide">
                             <img src="/images/logo1.png" alt="Award 1" />
                         </div>
-                    })
+                    }
                   
                 </div>
 

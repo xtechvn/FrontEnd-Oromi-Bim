@@ -20,6 +20,7 @@ namespace BIOLIFE.Controllers.Home
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Static = configuration["common:link_static_img"];
             var objMenu = new MenuService(configuration, _redisService);
             var BannerMain = await objMenu.GetBannerMain();
             var BannerSub = await objMenu.GetBannerSub();
